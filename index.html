@@ -1,0 +1,2519 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Office English – Học từ vựng văn phòng</title>
+<style>
+:root{
+  --bg:#f2f7fd; --card:#ffffff; --primary:#3b7dd8; --primary-dark:#2a5fae;
+  --primary-light:#e3eefb; --text:#1f2d3d; --muted:#64748b; --border:#d6e4f5;
+  --ok:#1e9e6a; --ok-bg:#e6f7f0; --err:#d9534f; --err-bg:#fdeceb;
+  --warn:#e8a33d; --warn-bg:#fdf3e3; --radius:14px;
+  --shadow:0 1px 3px rgba(35,70,120,.07),0 6px 18px rgba(35,70,120,.05);
+}
+*{box-sizing:border-box}
+html,body{margin:0;padding:0}
+body{
+  font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,"Noto Sans",sans-serif;
+  background:var(--bg); color:var(--text); font-size:16px; line-height:1.55;
+  -webkit-text-size-adjust:100%;
+}
+img,table{max-width:100%}
+button{font-family:inherit}
+
+/* ---------- Topbar ---------- */
+.topbar{
+  position:sticky; top:0; z-index:60; display:flex; align-items:center; gap:10px;
+  background:linear-gradient(135deg,#3b7dd8,#5b9ae8); color:#fff;
+  padding:10px 14px; box-shadow:0 2px 10px rgba(35,70,120,.15);
+}
+.brand{font-weight:700; font-size:1.05rem; letter-spacing:.2px; white-space:nowrap; overflow:hidden; text-overflow:ellipsis}
+.topbar-right{margin-left:auto; display:flex; align-items:center; gap:8px}
+.pill{background:rgba(255,255,255,.2); padding:4px 10px; border-radius:999px; font-size:.78rem; white-space:nowrap}
+.icon-btn{
+  background:rgba(255,255,255,.18); border:none; color:#fff; font-size:1.15rem;
+  width:38px; height:38px; border-radius:10px; cursor:pointer; display:grid; place-items:center;
+}
+.icon-btn:hover{background:rgba(255,255,255,.3)}
+
+/* ---------- Layout ---------- */
+.app{display:flex; align-items:flex-start; min-height:calc(100vh - 58px)}
+.sidebar{
+  width:250px; flex:0 0 250px; background:#fff; border-right:1px solid var(--border);
+  padding:14px 10px; position:sticky; top:58px; height:calc(100vh - 58px); overflow-y:auto;
+}
+.sidebar a{
+  display:flex; align-items:center; gap:10px; padding:11px 12px; margin-bottom:4px;
+  border-radius:10px; color:var(--text); text-decoration:none; font-size:.94rem; font-weight:500;
+}
+.sidebar a:hover{background:var(--primary-light)}
+.sidebar a.active{background:var(--primary); color:#fff}
+.main{flex:1; min-width:0; padding:18px; max-width:1180px; margin:0 auto; width:100%}
+.scrim{display:none}
+
+@media(max-width:900px){
+  .sidebar{
+    position:fixed; left:0; top:58px; bottom:0; height:auto; z-index:70;
+    transform:translateX(-105%); transition:transform .22s ease; box-shadow:var(--shadow);
+  }
+  .sidebar.open{transform:translateX(0)}
+  .scrim.show{display:block; position:fixed; inset:58px 0 0 0; background:rgba(20,40,70,.35); z-index:65}
+  .main{padding:14px}
+}
+
+/* ---------- Common ---------- */
+h1{font-size:1.35rem; margin:.2em 0 .6em}
+h2{font-size:1.12rem; margin:1.2em 0 .5em; color:var(--primary-dark)}
+h3{font-size:1rem; margin:1em 0 .4em}
+.card{background:var(--card); border:1px solid var(--border); border-radius:var(--radius); padding:16px; box-shadow:var(--shadow); margin-bottom:14px}
+.grid{display:grid; gap:12px}
+.grid.stats{grid-template-columns:repeat(auto-fit,minmax(150px,1fr))}
+.grid.two{grid-template-columns:repeat(auto-fit,minmax(280px,1fr))}
+.grid.three{grid-template-columns:repeat(auto-fit,minmax(220px,1fr))}
+.stat{background:#fff; border:1px solid var(--border); border-radius:var(--radius); padding:14px; text-align:center}
+.stat .num{font-size:1.6rem; font-weight:700; color:var(--primary)}
+.stat .lbl{font-size:.82rem; color:var(--muted)}
+.btn{
+  display:inline-flex; align-items:center; justify-content:center; gap:6px;
+  padding:10px 16px; border-radius:10px; border:1px solid var(--border);
+  background:#fff; color:var(--text); font-size:.9rem; font-weight:600; cursor:pointer;
+  min-height:42px; transition:background .15s;
+}
+.btn:hover{background:#f4f8fe}
+.btn.primary{background:var(--primary); color:#fff; border-color:var(--primary)}
+.btn.primary:hover{background:var(--primary-dark)}
+.btn.ghost{background:transparent}
+.btn.danger{background:#fff; color:var(--err); border-color:#f2c4c1}
+.btn.danger:hover{background:var(--err-bg)}
+.btn.small{padding:6px 10px; font-size:.8rem; min-height:34px}
+.row{display:flex; flex-wrap:wrap; gap:8px; align-items:center}
+.spacer{flex:1}
+input[type=text],input[type=search],textarea,select{
+  font-family:inherit; font-size:.92rem; padding:9px 11px; border:1px solid var(--border);
+  border-radius:10px; background:#fff; color:var(--text); width:100%; max-width:100%;
+}
+textarea{min-height:90px; resize:vertical; line-height:1.5}
+input:focus,select:focus,textarea:focus{outline:2px solid var(--primary-light); border-color:var(--primary)}
+label.field{display:block; margin-bottom:10px; font-size:.86rem; color:var(--muted); font-weight:600}
+.tag{display:inline-block; background:var(--primary-light); color:var(--primary-dark); font-size:.72rem; font-weight:700; padding:2px 8px; border-radius:999px}
+.tag.grey{background:#eef2f7; color:var(--muted)}
+.tag.green{background:var(--ok-bg); color:var(--ok)}
+.tag.orange{background:var(--warn-bg); color:#a9701a}
+.note{font-size:.82rem; color:var(--muted)}
+.passage{background:#fbfdff; border-left:4px solid var(--primary); border-radius:0 10px 10px 0; padding:14px 16px; line-height:1.75}
+.passage p{margin:.6em 0}
+.passage h3{margin-top:0; color:var(--primary-dark)}
+.passage ul{margin:.5em 0 .5em 1.1em}
+.progressbar{height:9px; background:#e8eff8; border-radius:999px; overflow:hidden; margin-top:6px}
+.progressbar > div{height:100%; background:linear-gradient(90deg,#4f92e8,#3b7dd8); border-radius:999px; transition:width .3s}
+.unitrow{margin-bottom:10px}
+.unitrow .top{display:flex; justify-content:space-between; font-size:.86rem; font-weight:600}
+.feedback{margin-top:10px; font-size:.9rem; border-radius:10px; padding:10px 12px; display:none}
+.feedback.show{display:block}
+.feedback.ok{background:var(--ok-bg); color:#136b48; border:1px solid #b9e6d3}
+.feedback.err{background:var(--err-bg); color:#8f2f2b; border:1px solid #f3c8c5}
+.feedback.info{background:var(--primary-light); color:var(--primary-dark); border:1px solid #c3dbf7}
+.qbox{border:1px solid var(--border); border-radius:12px; padding:12px; margin-bottom:10px; background:#fff}
+.qbox .qtext{font-weight:600; margin-bottom:8px; font-size:.94rem}
+.opt{display:block; width:100%; text-align:left; border:1px solid var(--border); background:#fff; border-radius:10px; padding:9px 12px; margin-bottom:6px; cursor:pointer; font-size:.9rem}
+.opt:hover{background:#f4f8fe}
+.opt.sel{border-color:var(--primary); background:var(--primary-light)}
+.opt.correct{border-color:var(--ok); background:var(--ok-bg)}
+.opt.wrong{border-color:var(--err); background:var(--err-bg)}
+.vcard{border:1px solid var(--border); border-radius:12px; padding:13px; background:#fff; margin-bottom:10px}
+.vcard.learned{border-color:#b9e6d3; background:#fbfffd}
+.vhead{display:flex; justify-content:space-between; gap:8px; flex-wrap:wrap; align-items:baseline}
+.vword{font-weight:700; font-size:1.03rem; color:var(--primary-dark)}
+.vpos{font-size:.78rem; color:var(--muted); font-style:italic; margin-left:6px}
+.ipa{font-size:.84rem; color:var(--muted)}
+.vvi{color:#14507f; font-weight:600; margin:4px 0}
+.vex{font-size:.87rem; color:#3c4a5c; background:#f8fbff; border-radius:8px; padding:8px 10px; margin-top:6px}
+.vfoot{display:flex; gap:6px; flex-wrap:wrap; margin-top:9px; align-items:center}
+.mini{border:1px solid var(--border); background:#fff; border-radius:8px; padding:5px 9px; font-size:.76rem; cursor:pointer; font-weight:600; color:var(--text)}
+.mini:hover{background:#f4f8fe}
+.mini.on{background:var(--primary-light); border-color:var(--primary); color:var(--primary-dark)}
+body.hide-vi-mode .hide-vi{display:none}
+.chips{display:flex; flex-wrap:wrap; gap:7px; margin:8px 0}
+.chip{border:1px solid var(--border); background:#fff; border-radius:999px; padding:6px 13px; font-size:.83rem; cursor:pointer; font-weight:600}
+.chip:hover{background:#f4f8fe}
+.chip.sel{background:var(--primary); color:#fff; border-color:var(--primary)}
+.zone{min-height:74px; border:2px dashed var(--border); border-radius:12px; padding:9px; background:#fbfdff}
+.zone.over{border-color:var(--primary); background:var(--primary-light)}
+.zone h4{margin:0 0 6px; font-size:.85rem; color:var(--primary-dark)}
+table{width:100%; border-collapse:collapse; font-size:.88rem}
+th,td{border:1px solid var(--border); padding:8px 10px; text-align:left}
+th{background:var(--primary-light); color:var(--primary-dark)}
+.tablewrap{overflow-x:auto; -webkit-overflow-scrolling:touch}
+.matchrow{display:flex; gap:8px; flex-wrap:wrap; align-items:center; margin-bottom:8px}
+.matchrow .mleft{flex:1 1 190px; font-weight:600; font-size:.9rem}
+.matchrow select{flex:1 1 220px}
+.answerbox{background:#fbfffd; border:1px solid #b9e6d3; border-radius:10px; padding:10px 12px; font-size:.9rem; margin-top:8px}
+.tabs{display:flex; gap:6px; flex-wrap:wrap; margin-bottom:12px}
+.tab{padding:8px 13px; border-radius:999px; border:1px solid var(--border); background:#fff; cursor:pointer; font-size:.85rem; font-weight:600}
+.tab.active{background:var(--primary); color:#fff; border-color:var(--primary)}
+.hidden{display:none !important}
+.kv{display:flex; justify-content:space-between; gap:10px; padding:6px 0; border-bottom:1px dashed var(--border); font-size:.88rem}
+.kv:last-child{border-bottom:none}
+.list-item{border:1px solid var(--border); border-radius:10px; padding:10px 12px; margin-bottom:8px; background:#fff; font-size:.88rem}
+.toast{
+  position:fixed; left:50%; bottom:22px; transform:translateX(-50%) translateY(80px);
+  background:#1f2d3d; color:#fff; padding:10px 18px; border-radius:10px; font-size:.88rem;
+  opacity:0; transition:.25s; z-index:200; pointer-events:none; max-width:90vw; text-align:center;
+}
+.toast.show{opacity:1; transform:translateX(-50%) translateY(0)}
+@media(max-width:520px){
+  .main{padding:11px}
+  .card{padding:13px}
+  h1{font-size:1.15rem}
+  .stat .num{font-size:1.35rem}
+  .btn{padding:9px 13px; font-size:.85rem}
+}
+</style>
+</head>
+<body>
+
+<header class="topbar">
+  <button id="menuBtn" class="icon-btn" aria-label="Mở menu">☰</button>
+  <div class="brand">💼 Office English</div>
+  <div class="topbar-right">
+    <span class="pill" id="topbarProgress">0/0 từ</span>
+  </div>
+</header>
+
+<div class="app">
+  <nav class="sidebar" id="sidebar">
+    <a href="#" data-view="dashboard">📊 Dashboard</a>
+    <a href="#" data-view="vocab">📚 Thư viện từ vựng</a>
+    <a href="#" data-view="units">📖 Học theo bài</a>
+    <a href="#" data-view="reading">📝 Luyện đọc hiểu</a>
+    <a href="#" data-view="exercises">✏️ Bài tập từ vựng</a>
+    <a href="#" data-view="open">💬 Câu hỏi tự luận</a>
+    <a href="#" data-view="test">🎯 Bài kiểm tra tổng hợp</a>
+    <a href="#" data-view="progress">📈 Tiến độ &amp; Lỗi sai</a>
+  </nav>
+  <div class="scrim" id="scrim"></div>
+  <main class="main" id="main"></main>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script>
+"use strict";
+
+/* =========================================================================
+   1. DỮ LIỆU
+   ========================================================================= */
+
+const UNITS = [
+  {id:1,  name:"Office Supplies",              vi:"Đồ dùng văn phòng"},
+  {id:2,  name:"Office Furniture",             vi:"Nội thất văn phòng"},
+  {id:5,  name:"Office Documents",             vi:"Tài liệu văn phòng"},
+  {id:10, name:"Qualities of a Good Employee", vi:"Phẩm chất nhân viên giỏi"},
+  {id:11, name:"Departments",                  vi:"Các phòng ban"}
+];
+
+const V = (en,pos,ipa,vi,ex,exVi,units)=>({en,pos,ipa,vi,ex,exVi,units});
+
+const VOCAB = [
+/* ---------------- UNIT 1 ---------------- */
+V("supply / supplies","noun","/səˈplaɪ/, /səˈplaɪz/","đồ dùng, vật tư","The secretary needs some office supplies, such as pens and folders.","Thư ký cần một số đồ dùng văn phòng như bút và bìa hồ sơ.",[1]),
+V("pen","noun","/pen/","bút mực","My pen is out of ink, so I need a new one.","Bút của tôi hết mực nên tôi cần một cái mới.",[1]),
+V("tape","noun","/teɪp/","băng dính","Use tape to stick the two pages together.","Dùng băng dính để dán hai trang giấy lại với nhau.",[1]),
+V("folder","noun","/ˈfəʊldə(r)/","bìa đựng hồ sơ","Put these documents in a folder.","Hãy cho các tài liệu này vào bìa hồ sơ.",[1]),
+V("staple","noun","/ˈsteɪpl/","ghim bấm giấy","He places an order for staples, paperclips and correction fluid.","Anh ấy đặt hàng ghim, kẹp giấy và bút xóa.",[1]),
+V("paperclip","noun","/ˈpeɪpəklɪp/","kẹp giấy","A paperclip slides over papers to keep them together.","Kẹp giấy trượt qua các tờ giấy để giữ chúng lại với nhau.",[1]),
+V("correction fluid","noun","/kəˈrekʃən ˌfluːɪd/","bút xóa, dung dịch xóa","She used correction fluid to cover the mistake.","Cô ấy dùng bút xóa để che lỗi sai.",[1]),
+V("order","noun, verb","/ˈɔːdə(r)/","đơn đặt hàng; đặt hàng","The manager places an order for office supplies every month.","Người quản lý đặt hàng đồ dùng văn phòng mỗi tháng.",[1]),
+V("in charge of","phrase","/ɪn ˈtʃɑːdʒ əv/","chịu trách nhiệm về","One person is in charge of purchasing supplies.","Một người chịu trách nhiệm mua đồ dùng văn phòng.",[1]),
+V("office supply store","noun phrase","/ˈɒfɪs səˈplaɪ stɔː(r)/","cửa hàng văn phòng phẩm","Many office supply stores give discounts for larger orders.","Nhiều cửa hàng văn phòng phẩm giảm giá cho những đơn hàng lớn hơn.",[1]),
+V("purchase","verb, noun","/ˈpɜːtʃəs/","mua; sự mua hàng","The company purchases supplies in large quantities.","Công ty mua đồ dùng với số lượng lớn.",[1]),
+V("purchasing","noun","/ˈpɜːtʃəsɪŋ/","việc thu mua","Purchasing supplies is her main responsibility.","Thu mua đồ dùng là trách nhiệm chính của cô ấy.",[1,11]),
+V("necessary","adjective","/ˈnesəsəri/","cần thiết","Pens and paper are necessary items in an office.","Bút và giấy là những vật dụng cần thiết trong văn phòng.",[1]),
+V("item","noun","/ˈaɪtəm/","món đồ, mặt hàng","Everything arrives at the same time, so all the items are together.","Mọi thứ đến cùng lúc nên tất cả các mặt hàng ở cùng nhau.",[1]),
+V("shipping charge","noun phrase","/ˈʃɪpɪŋ tʃɑːdʒ/","phí vận chuyển","One large order saves money on shipping charges.","Một đơn hàng lớn giúp tiết kiệm phí vận chuyển.",[1]),
+V("discount","noun, verb","/ˈdɪskaʊnt/","sự giảm giá; giảm giá","We got a discount on the larger order.","Chúng tôi được giảm giá cho đơn hàng lớn hơn.",[1]),
+V("place an order","phrase","/pleɪs ən ˈɔːdə(r)/","đặt hàng","Please place an order for staples and paperclips.","Hãy đặt hàng ghim và kẹp giấy.",[1]),
+V("larger order","noun phrase","/ˌlɑːdʒər ˈɔːdə(r)/","đơn hàng lớn hơn","Office supply stores often give discounts for larger orders.","Các cửa hàng văn phòng phẩm thường giảm giá cho đơn hàng lớn hơn.",[1]),
+V("purchase office supplies","collocation","/ˈpɜːtʃəs ˈɒfɪs səˈplaɪz/","mua đồ dùng văn phòng","It is better to have one person purchase office supplies.","Tốt hơn là để một người mua đồ dùng văn phòng.",[1]),
+V("save money on shipping charges","collocation","/seɪv ˈmʌni ɒn ˈʃɪpɪŋ tʃɑːdʒɪz/","tiết kiệm phí vận chuyển","Ordering everything at once saves money on shipping charges.","Đặt mọi thứ cùng một lúc giúp tiết kiệm phí vận chuyển.",[1]),
+
+/* ---------------- UNIT 2 ---------------- */
+V("office furniture","noun phrase","/ˈɒfɪs ˌfɜːnɪtʃə(r)/","nội thất văn phòng","Bradley’s sells office furniture in Chicago.","Bradley’s bán nội thất văn phòng ở Chicago.",[2]),
+V("retailer","noun","/ˈriːteɪlə(r)/","nhà bán lẻ","Bradley’s is an office furniture retailer.","Bradley’s là một nhà bán lẻ nội thất văn phòng.",[2]),
+V("coat rack","noun phrase","/ˈkəʊt ræk/","giá treo áo khoác","We sell everything from coat racks to filing cabinets.","Chúng tôi bán mọi thứ từ giá treo áo đến tủ đựng hồ sơ.",[2]),
+V("filing cabinet","noun phrase","/ˈfaɪlɪŋ ˌkæbɪnət/","tủ đựng hồ sơ","You organize folders in a filing cabinet.","Bạn sắp xếp các bìa hồ sơ trong tủ đựng hồ sơ.",[2]),
+V("office desk","noun phrase","/ˈɒfɪs desk/","bàn làm việc văn phòng","The filing cabinet is next to my office desk.","Tủ hồ sơ ở cạnh bàn làm việc của tôi.",[2]),
+V("reception desk","noun phrase","/rɪˈsepʃən desk/","quầy lễ tân","How about a new reception desk? No problem.","Còn quầy lễ tân mới thì sao? Không vấn đề gì.",[2]),
+V("shelf","noun","/ʃelf/","kệ, giá","We have a large selection of shelves.","Chúng tôi có rất nhiều kệ để lựa chọn.",[2]),
+V("shelves","noun (plural)","/ʃelvz/","các kệ, giá","The shelves come in wood or metal.","Các kệ có loại bằng gỗ hoặc kim loại.",[2]),
+V("office chair","noun phrase","/ˈɒfɪs tʃeə(r)/","ghế văn phòng","Come in and check out our brand new line of office chairs.","Hãy đến và xem dòng ghế văn phòng mới nhất của chúng tôi.",[2]),
+V("traditional","adjective","/trəˈdɪʃənəl/","truyền thống","Bradley’s offers different furniture styles, from traditional to modern.","Bradley’s cung cấp nhiều phong cách nội thất khác nhau, từ truyền thống đến hiện đại.",[2]),
+V("modern","adjective","/ˈmɒdən/","hiện đại","This is my great-grandfather’s desk. It’s very modern.","Đây là bàn của ông cố tôi. Nó rất hiện đại.",[2]),
+V("selection","noun","/sɪˈlekʃən/","sự lựa chọn; bộ sưu tập","We also have a large selection of shelves.","Chúng tôi cũng có rất nhiều kệ để lựa chọn.",[2]),
+V("experience","noun","/ɪkˈspɪəriəns/","kinh nghiệm","With over 60 years’ experience, we know what you need.","Với hơn 60 năm kinh nghiệm, chúng tôi biết bạn cần gì.",[2,10]),
+V("deliver","verb","/dɪˈlɪvə(r)/","giao hàng","We deliver to your home or office, Mondays through Fridays.","Chúng tôi giao hàng đến nhà hoặc văn phòng của bạn từ thứ Hai đến thứ Sáu.",[2]),
+V("delivery charge","noun phrase","/dɪˈlɪvəri tʃɑːdʒ/","phí giao hàng","Delivery charges do apply.","Phí giao hàng vẫn được áp dụng.",[2]),
+V("check out","phrasal verb","/tʃek aʊt/","xem thử, kiểm tra","Come in and check out our brand new line of office chairs.","Hãy đến và xem thử dòng ghế văn phòng mới nhất của chúng tôi.",[2]),
+V("come in","phrasal verb","/kʌm ɪn/","có sẵn với nhiều loại/màu khác nhau","The shelves come in wood or metal.","Các kệ có loại bằng gỗ hoặc kim loại.",[2]),
+V("office furniture retailer","collocation","/ˈɒfɪs ˌfɜːnɪtʃə ˈriːteɪlə(r)/","nhà bán lẻ nội thất văn phòng","Bradley’s is an office furniture retailer based in Chicago.","Bradley’s là một nhà bán lẻ nội thất văn phòng có trụ sở tại Chicago.",[2]),
+
+/* ---------------- UNIT 5 ---------------- */
+V("document","noun","/ˈdɒkjumənt/","tài liệu, văn bản","Please prepare the document for Mr. Bates.","Hãy soạn tài liệu cho ông Bates.",[5]),
+V("legal document","noun phrase","/ˈliːɡəl ˌdɒkjumənt/","văn bản pháp lý","A secretary prepares legal documents.","Thư ký soạn thảo văn bản pháp lý.",[5]),
+V("secretary","noun","/ˈsekrətri/","thư ký","We want a secretary with great people and computer skills.","Chúng tôi cần một thư ký có kỹ năng giao tiếp và tin học tốt.",[5]),
+V("organizer","noun","/ˈɔːɡənaɪzə(r)/","người tổ chức, người sắp xếp","We need a good organizer.","Chúng tôi cần một người biết sắp xếp công việc tốt.",[5]),
+V("prepare","verb","/prɪˈpeə(r)/","chuẩn bị, soạn thảo","A secretary has to prepare and organize many documents.","Thư ký phải soạn thảo và sắp xếp nhiều tài liệu.",[5]),
+V("fax","noun, verb","/fæks/","máy fax; gửi fax","It is easier and faster to fax documents than mail them.","Gửi fax tài liệu thì dễ và nhanh hơn gửi thư.",[5]),
+V("memo","noun","/ˈmeməʊ/","bản ghi nhớ","Send faxes and send out memos.","Gửi fax và gửi các bản ghi nhớ.",[5]),
+V("keep track of","phrase","/kiːp træk əv/","theo dõi, ghi chép để quản lý","It’s important to keep track of important documents so you don’t lose them.","Điều quan trọng là phải theo dõi các tài liệu quan trọng để không làm mất chúng.",[5]),
+V("receipt","noun","/rɪˈsiːt/","biên lai, hóa đơn","Can you give me a receipt?","Bạn có thể đưa tôi biên lai được không?",[5]),
+V("payment","noun","/ˈpeɪmənt/","khoản thanh toán","We need to keep track of all receipts and payments.","Chúng ta cần theo dõi tất cả biên lai và các khoản thanh toán.",[5]),
+V("business letter","noun phrase","/ˈbɪznəs ˌletə(r)/","thư thương mại","Please type up a business letter for me.","Hãy đánh máy một lá thư thương mại cho tôi.",[5]),
+V("form","noun","/fɔːm/","biểu mẫu","Fill out this form with your name and address.","Hãy điền tên và địa chỉ của bạn vào biểu mẫu này.",[5]),
+V("order form","noun phrase","/ˈɔːdə fɔːm/","phiếu đặt hàng","Complete the order form for new office supplies.","Hoàn thành phiếu đặt hàng đồ dùng văn phòng mới.",[5]),
+V("fill out","phrasal verb","/fɪl aʊt/","điền vào biểu mẫu","Fill out this form with your name and address.","Hãy điền tên và địa chỉ của bạn vào biểu mẫu này.",[5]),
+V("answer the phone","phrase","/ˌɑːnsə ðə ˈfəʊn/","trả lời điện thoại","Answering the phone and greeting clients is also important.","Trả lời điện thoại và chào đón khách hàng cũng rất quan trọng.",[5]),
+V("greet","verb","/ɡriːt/","chào đón","She greets clients with a smile.","Cô ấy chào đón khách hàng với nụ cười.",[5]),
+V("client","noun","/ˈklaɪənt/","khách hàng","Salespeople talk to clients and show them our great products.","Nhân viên bán hàng nói chuyện với khách hàng và giới thiệu sản phẩm của chúng tôi.",[5,11]),
+V("friendly","adjective","/ˈfrendli/","thân thiện","We want someone who is friendly and energetic.","Chúng tôi cần một người thân thiện và năng động.",[5,10]),
+V("energetic","adjective","/ˌenəˈdʒetɪk/","năng động, tràn đầy năng lượng","We want someone who is friendly and energetic.","Chúng tôi cần một người thân thiện và năng động.",[5]),
+V("type up","phrasal verb","/taɪp ʌp/","đánh máy hoàn chỉnh","Please type up a business letter for me.","Hãy đánh máy một lá thư thương mại cho tôi.",[5]),
+V("address","verb","/əˈdres/","ghi tên/địa chỉ người nhận","Who shall I address it to?","Tôi nên ghi người nhận là ai?",[5]),
+V("keep track of receipts and payments","collocation","/kiːp træk əv rɪˈsiːts ənd ˈpeɪmənts/","theo dõi biên lai và các khoản thanh toán","A secretary keeps track of receipts and payments.","Thư ký theo dõi biên lai và các khoản thanh toán.",[5]),
+V("prepare legal documents","collocation","/prɪˈpeə ˈliːɡəl ˌdɒkjumənts/","soạn thảo văn bản pháp lý","She prepares legal documents for the law firm.","Cô ấy soạn thảo văn bản pháp lý cho công ty luật.",[5]),
+V("fill out a form","collocation","/fɪl aʊt ə fɔːm/","điền vào biểu mẫu","Please fill out a form with your details.","Vui lòng điền thông tin của bạn vào biểu mẫu.",[5]),
+V("greet clients","collocation","/ɡriːt ˈklaɪənts/","chào đón khách hàng","Greeting clients is an important part of the job.","Chào đón khách hàng là một phần quan trọng của công việc.",[5]),
+
+/* ---------------- UNIT 10 ---------------- */
+V("quality","noun","/ˈkwɒləti/","phẩm chất, chất lượng","A good employee has many good qualities.","Một nhân viên giỏi có nhiều phẩm chất tốt.",[10]),
+V("employee","noun","/ɪmˈplɔɪiː/","nhân viên","The company has more than 200 employees.","Công ty có hơn 200 nhân viên.",[10,11]),
+V("employer","noun","/ɪmˈplɔɪə(r)/","người sử dụng lao động","My employer pays me every month.","Người sử dụng lao động trả lương cho tôi mỗi tháng.",[10]),
+V("hard-working","adjective","/ˌhɑːd ˈwɜːkɪŋ/","chăm chỉ","Jane is hard-working and never leaves the office until her work is complete.","Jane rất chăm chỉ và không bao giờ rời văn phòng trước khi xong việc.",[10]),
+V("organized","adjective","/ˈɔːɡənaɪzd/","ngăn nắp, có tổ chức","Are you hard-working and organized?","Bạn có chăm chỉ và ngăn nắp không?",[10]),
+V("qualified","adjective","/ˈkwɒlɪfaɪd/","đủ trình độ, có bằng cấp","This certificate shows that I am a qualified personal assistant.","Chứng chỉ này cho thấy tôi là một trợ lý cá nhân đủ trình độ.",[10]),
+V("efficient","adjective","/ɪˈfɪʃənt/","hiệu quả, năng suất","Jacob is efficient. He works quickly, and he does the work well.","Jacob làm việc hiệu quả. Anh ấy làm nhanh và làm tốt.",[10]),
+V("reliable","adjective","/rɪˈlaɪəbl/","đáng tin cậy","Our law firm is looking for an efficient and reliable personal assistant.","Công ty luật của chúng tôi đang tìm một trợ lý cá nhân hiệu quả và đáng tin cậy.",[10]),
+V("successful","adjective","/səkˈsesfəl/","thành công","After his successful job search, Mike starts work on Monday.","Sau khi tìm việc thành công, Mike bắt đầu làm việc vào thứ Hai.",[10]),
+V("polite","adjective","/pəˈlaɪt/","lịch sự","She has a friendly and polite telephone manner.","Cô ấy có cách nói chuyện điện thoại thân thiện và lịch sự.",[10]),
+V("familiar with","adjective phrase","/fəˈmɪliə wɪð/","quen thuộc với, am hiểu","Applicants should be familiar with office computer software.","Ứng viên nên am hiểu phần mềm máy tính văn phòng.",[10]),
+V("personal assistant (PA)","noun phrase","/ˌpɜːsənəl əˈsɪstənt/","trợ lý cá nhân","Our law firm is looking for a personal assistant (PA).","Công ty luật của chúng tôi đang tìm một trợ lý cá nhân.",[10]),
+V("grammar","noun","/ˈɡræmə(r)/","ngữ pháp","The applicant must have good grammar and spelling.","Ứng viên phải có ngữ pháp và chính tả tốt.",[10]),
+V("spelling","noun","/ˈspelɪŋ/","chính tả","Good spelling is important in business letters.","Chính tả tốt rất quan trọng trong thư thương mại.",[10]),
+V("typing speed","noun phrase","/ˈtaɪpɪŋ spiːd/","tốc độ đánh máy","You need a typing speed of at least 50 words per minute.","Bạn cần tốc độ đánh máy ít nhất 50 từ mỗi phút.",[10]),
+V("telephone manner","noun phrase","/ˈtelɪfəʊn ˌmænə(r)/","cách giao tiếp qua điện thoại","She has a friendly and polite telephone manner.","Cô ấy có cách nói chuyện điện thoại thân thiện và lịch sự.",[10]),
+V("software","noun","/ˈsɒftweə(r)/","phần mềm","Be familiar with office computer software.","Hãy thành thạo phần mềm máy tính văn phòng.",[10]),
+V("applicant","noun","/ˈæplɪkənt/","ứng viên","The successful applicant will have two years’ office experience.","Ứng viên được chọn sẽ có hai năm kinh nghiệm văn phòng.",[10]),
+V("apply","verb","/əˈplaɪ/","nộp đơn, ứng tuyển","To apply, please email Janet Freeman for an application form.","Để ứng tuyển, vui lòng gửi email cho Janet Freeman để lấy đơn đăng ký.",[10]),
+V("application form","noun phrase","/ˌæplɪˈkeɪʃən fɔːm/","đơn đăng ký","Please email us for an application form.","Vui lòng gửi email cho chúng tôi để nhận đơn đăng ký.",[10]),
+V("yearly","adjective, adverb","/ˈjɪəli/","hằng năm","The salary is $22,000 yearly.","Mức lương là 22.000 đô la một năm.",[10]),
+V("words per minute (WPM)","noun phrase","/ˌwɜːdz pə ˈmɪnɪt/","số từ mỗi phút","She can type 60 words per minute.","Cô ấy có thể đánh máy 60 từ mỗi phút.",[10]),
+V("have good grammar and spelling","collocation","/hæv ɡʊd ˈɡræmə ənd ˈspelɪŋ/","có ngữ pháp và chính tả tốt","A secretary should have good grammar and spelling.","Thư ký nên có ngữ pháp và chính tả tốt.",[10]),
+V("be familiar with computer software","collocation","/bi fəˈmɪliə wɪð kəmˈpjuːtə ˈsɒftweə(r)/","quen thuộc với phần mềm máy tính","Applicants must be familiar with computer software.","Ứng viên phải quen thuộc với phần mềm máy tính.",[10]),
+
+/* ---------------- UNIT 11 ---------------- */
+V("department","noun","/dɪˈpɑːtmənt/","phòng ban","Our purchasing department is an exciting place to work.","Phòng thu mua của chúng tôi là một nơi làm việc thú vị.",[11]),
+V("purchasing department","noun phrase","/ˈpɜːtʃəsɪŋ dɪˌpɑːtmənt/","phòng thu mua","The purchasing department searches for products in many countries.","Phòng thu mua tìm kiếm sản phẩm ở nhiều quốc gia.",[11]),
+V("marketing department","noun phrase","/ˈmɑːkɪtɪŋ dɪˌpɑːtmənt/","phòng tiếp thị","Our marketing department has openings for graphic designers.","Phòng tiếp thị của chúng tôi có vị trí trống cho nhà thiết kế đồ họa.",[11]),
+V("sales department","noun phrase","/ˈseɪlz dɪˌpɑːtmənt/","phòng kinh doanh","Our sales department needs people with good communication skills.","Phòng kinh doanh của chúng tôi cần người có kỹ năng giao tiếp tốt.",[11]),
+V("human resources (HR)","noun phrase","/ˌhjuːmən rɪˈzɔːsɪz/","phòng nhân sự","Human Resources is responsible for hiring employees.","Phòng nhân sự chịu trách nhiệm tuyển dụng nhân viên.",[11]),
+V("marketing","noun","/ˈmɑːkɪtɪŋ/","hoạt động tiếp thị","Marketing employees advertise products for sale.","Nhân viên tiếp thị quảng cáo sản phẩm để bán.",[11]),
+V("sales","noun","/seɪlz/","hoạt động bán hàng","Salespeople talk to clients and show them our products.","Nhân viên bán hàng nói chuyện với khách và giới thiệu sản phẩm.",[11]),
+V("graphic designer","noun phrase","/ˈɡræfɪk dɪˌzaɪnə(r)/","nhà thiết kế đồ họa","The marketing department needs talented graphic designers.","Phòng tiếp thị cần những nhà thiết kế đồ họa tài năng.",[11]),
+V("communication skills","noun phrase","/kəˌmjuːnɪˈkeɪʃən skɪlz/","kỹ năng giao tiếp","Our sales department needs people with good communication skills.","Phòng kinh doanh cần người có kỹ năng giao tiếp tốt.",[11]),
+V("recruit","verb","/rɪˈkruːt/","tuyển dụng","Human Resources recruits new employees.","Phòng nhân sự tuyển dụng nhân viên mới.",[11]),
+V("hire","verb","/ˈhaɪə(r)/","thuê, tuyển dụng","It is responsible for hiring employees and employee benefits.","Phòng này chịu trách nhiệm tuyển dụng nhân viên và phúc lợi nhân viên.",[11]),
+V("employee benefits","noun phrase","/ɪmˈplɔɪiː ˌbenɪfɪts/","phúc lợi nhân viên","Human Resources manages employee benefits.","Phòng nhân sự quản lý phúc lợi nhân viên.",[11]),
+V("talent","noun","/ˈtælənt/","tài năng, nhân tài","The marketing department wants to find new talent.","Phòng tiếp thị muốn tìm nhân tài mới.",[11]),
+V("vacancy","noun","/ˈveɪkənsi/","vị trí tuyển dụng còn trống","The human resources department just filled the vacancy for a secretary.","Phòng nhân sự vừa tuyển xong vị trí thư ký còn trống.",[11]),
+V("inquire","verb","/ɪnˈkwaɪə(r)/","hỏi thông tin, tìm hiểu","Contact us to inquire about vacancies.","Liên hệ với chúng tôi để hỏi về các vị trí tuyển dụng.",[11]),
+V("creative","adjective","/kriˈeɪtɪv/","sáng tạo","Are you creative? Our marketing department has openings.","Bạn có sáng tạo không? Phòng tiếp thị của chúng tôi đang tuyển.",[11]),
+V("opening","noun","/ˈəʊpənɪŋ/","vị trí tuyển dụng còn trống","Our marketing department has openings for writers.","Phòng tiếp thị của chúng tôi có vị trí trống cho người viết.",[11]),
+V("responsible for","adjective phrase","/rɪˈspɒnsəbl fə(r)/","chịu trách nhiệm về","It is responsible for hiring employees and employee benefits.","Phòng này chịu trách nhiệm tuyển dụng nhân viên và phúc lợi nhân viên.",[11]),
+V("have good communication skills","collocation","/hæv ɡʊd kəˌmjuːnɪˈkeɪʃən skɪlz/","có kỹ năng giao tiếp tốt","Salespeople should have good communication skills.","Nhân viên bán hàng nên có kỹ năng giao tiếp tốt.",[11]),
+V("be responsible for hiring employees","collocation","/bi rɪˈspɒnsəbl fə ˈhaɪərɪŋ ɪmˈplɔɪiːz/","chịu trách nhiệm tuyển dụng nhân viên","Human Resources is responsible for hiring employees.","Phòng nhân sự chịu trách nhiệm tuyển dụng nhân viên.",[11]),
+V("inquire about vacancies","collocation","/ɪnˈkwaɪə əˈbaʊt ˈveɪkənsiz/","hỏi thông tin về vị trí tuyển dụng","Email us to inquire about vacancies.","Gửi email cho chúng tôi để hỏi về các vị trí tuyển dụng.",[11])
+];
+VOCAB.forEach((v,i)=>{ v.id = i+1; });
+
+/* ---------------- BÀI ĐỌC ---------------- */
+const READINGS = {
+1:{
+  title:"Who’s In Charge of the Supplies?",
+  by:"By Polly Evans",
+  html:`<p>Some businesses let employees order their own supplies. But this is a bad idea.</p>
+<p>Why? After all, employees need pens, tape and folders to do their jobs. But businesses lose money this way. It is better to have one person in charge of purchasing supplies.</p>
+<p>On a set date every month, employees give the person in charge lists of what they need. Then, he or she places an order for staples, paperclips, correction fluid and other necessary items. Everything arrives at the same time. This saves money on shipping charges. Also, many office supply stores give discounts for larger orders.</p>`
+},
+2:{
+  title:"Spring into Spring — Spring Sales at Bradley’s!",
+  by:"",
+  html:`<p>Welcome to Bradley’s! Bradley’s is an office furniture retailer based in Chicago. We sell everything that you need for your office, from coat racks to filing cabinets. With over 60 years’ experience, we know what you need. Need a new office desk? How about a reception desk? No problem. We have them! We also have a large selection of shelves which come in wood or metal. Come in and check out our brand new line of office chairs. Bradley’s offers different furniture styles, from traditional to modern. We also deliver to your home or office, Mondays through Fridays. (Delivery charges do apply.)</p>`
+},
+5:{
+  title:"LegalJobsRUs.com",
+  by:"Company: BATES AND BURNS LAW FIRM",
+  html:`<p>Want a great job? Here it is. We want a secretary with great people and computer skills. We need a good organizer who can:</p>
+<ul>
+<li>Prepare legal documents</li>
+<li>Send faxes and send out memos</li>
+<li>Keep track of receipts and payments</li>
+<li>Write excellent business letters</li>
+<li>Fill out many forms, including order forms for office supplies</li>
+</ul>
+<p>Answering the phone and greeting clients is also important. We want someone who is friendly and energetic. Interested? Please contact Mr. Bates at bates.joe@yourbestlawyer.com</p>`
+},
+10:{
+  title:"GREENWAY LTD.",
+  by:"",
+  html:`<p>Are you hard-working and organized? If so, we have a great job for you! Our law firm is looking for an efficient and reliable personal assistant (PA) to join our team.</p>
+<p>The successful applicant will:</p>
+<ul>
+<li>be a qualified PA or have two years’ office experience</li>
+<li>have good grammar and spelling</li>
+<li>have a typing speed of at least 50 words per minute</li>
+<li>have a friendly and polite telephone manner</li>
+<li>be familiar with office computer software</li>
+</ul>
+<p>To apply, please email Janet Freeman at hr@greenway.com for an application form.</p>
+<p>$22,000 yearly — 37 hours per week</p>`
+},
+11:{
+  title:"4 Great Reasons to Join Smith-Owen",
+  by:"",
+  html:`<p>At Smith-Owen, we’re always looking for new talent!</p>
+<p><b>1. Purchasing</b><br>Our purchasing department is an exciting place to work. Our employees search for products in many different countries.</p>
+<p><b>2. Marketing</b><br>Are you creative? Our marketing department has openings for talented graphic designers and writers.</p>
+<p><b>3. Sales</b><br>Our sales department needs people with good communication skills. Salespeople talk to clients and show them our great products.</p>
+<p><b>4. Human Resources</b><br>Our human resources department is the center of our talented team! It is responsible for hiring employees and employee benefits.</p>
+<p>Come join our company!</p>
+<p>Visit us at our Human Resources department, call 102-554-933, or email hr@smithowen.com to inquire about vacancies.</p>`
+}
+};
+
+/* ---------------- CÂU HỎI ĐỌC HIỂU ---------------- */
+const READING_QS = {
+1:[
+ {t:'mc',q:'According to the passage, why is it a bad idea for employees to order their own supplies?',
+  o:['Employees do not know what they need.','Businesses lose money this way.','Office supply stores do not sell to employees.','It takes too much time.'],a:1,
+  ex:'Bài đọc viết: “But businesses lose money this way.” – Nhưng doanh nghiệp mất tiền theo cách này.'},
+ {t:'tf',q:'Employees give their lists to the person in charge on a set date every month.',a:true,
+  ex:'“On a set date every month, employees give the person in charge lists of what they need.” – Vào một ngày cố định mỗi tháng, nhân viên đưa danh sách cho người phụ trách.'},
+ {t:'mc',q:'How can a company save money on shipping charges?',
+  o:['By ordering everything at the same time','By using email instead of paper','By buying from a supermarket','By paying in cash'],a:0,
+  ex:'“Everything arrives at the same time. This saves money on shipping charges.” – Mọi thứ đến cùng lúc, giúp tiết kiệm phí vận chuyển.'},
+ {t:'tf',q:'Office supply stores never give discounts.',a:false,
+  ex:'“Also, many office supply stores give discounts for larger orders.” – Nhiều cửa hàng có giảm giá cho đơn hàng lớn, nên “never” là sai.'}
+],
+2:[
+ {t:'mc',q:'What kind of company is Bradley’s?',
+  o:['A law firm','An office furniture retailer','A software company','A travel agency'],a:1,
+  ex:'“Bradley’s is an office furniture retailer based in Chicago.” – Bradley’s là nhà bán lẻ nội thất văn phòng tại Chicago.'},
+ {t:'tf',q:'Bradley’s has over 60 years’ experience.',a:true,
+  ex:'“With over 60 years’ experience, we know what you need.”'},
+ {t:'mc',q:'When does Bradley’s deliver furniture?',
+  o:['Saturdays and Sundays','Mondays through Fridays','Only on Mondays','Every day of the week'],a:1,
+  ex:'“We also deliver to your home or office, Mondays through Fridays.”'},
+ {t:'tf',q:'Delivery is completely free.',a:false,
+  ex:'“(Delivery charges do apply.)” – Phí giao hàng vẫn được áp dụng, nên câu này sai.'}
+],
+5:[
+ {t:'mc',q:'What job is advertised in the passage?',
+  o:['A graphic designer','A secretary','A sales manager','A computer programmer'],a:1,
+  ex:'“We want a secretary with great people and computer skills.”'},
+ {t:'tf',q:'The job requires writing excellent business letters.',a:true,
+  ex:'Danh sách nhiệm vụ có “Write excellent business letters”.'},
+ {t:'mc',q:'Which of these is NOT listed as a duty in the advertisement?',
+  o:['Prepare legal documents','Keep track of receipts and payments','Design office furniture','Answer the phone'],a:2,
+  ex:'Thiết kế nội thất văn phòng không được nhắc đến trong tin tuyển dụng.'},
+ {t:'tf',q:'The company wants someone who is friendly and energetic.',a:true,
+  ex:'“We want someone who is friendly and energetic.”'}
+],
+10:[
+ {t:'mc',q:'What position is Greenway Ltd looking for?',
+  o:['A personal assistant (PA)','A marketing manager','A graphic designer','A receptionist'],a:0,
+  ex:'“Our law firm is looking for an efficient and reliable personal assistant (PA) to join our team.”'},
+ {t:'tf',q:'Applicants must have a typing speed of at least 50 words per minute.',a:true,
+  ex:'“have a typing speed of at least 50 words per minute”'},
+ {t:'mc',q:'How many hours per week is the job?',
+  o:['22 hours','37 hours','50 hours','60 hours'],a:1,
+  ex:'“$22,000 yearly — 37 hours per week.”'},
+ {t:'tf',q:'You should send your CV by post to the office.',a:false,
+  ex:'“To apply, please email Janet Freeman at hr@greenway.com for an application form.” – Ứng tuyển qua email, không phải gửi thư bưu điện.'}
+],
+11:[
+ {t:'mc',q:'Which department searches for products in many different countries?',
+  o:['Marketing','Sales','Purchasing','Human Resources'],a:2,
+  ex:'“Our purchasing department … Our employees search for products in many different countries.”'},
+ {t:'tf',q:'The marketing department needs graphic designers and writers.',a:true,
+  ex:'“Our marketing department has openings for talented graphic designers and writers.”'},
+ {t:'mc',q:'What is Human Resources responsible for?',
+  o:['Selling products to clients','Hiring employees and employee benefits','Designing advertisements','Buying products from other countries'],a:1,
+  ex:'“It is responsible for hiring employees and employee benefits.”'},
+ {t:'tf',q:'Salespeople need good communication skills.',a:true,
+  ex:'“Our sales department needs people with good communication skills.”'}
+]
+};
+
+/* ---------------- BÀI TẬP GỐC ---------------- */
+const EXERCISES = [
+{id:'u1e1',unit:1,type:'match',note:'Bài tập gốc',title:'Exercise 1 – Match the words with their definitions',
+ pairs:[
+  {left:'folder',right:'an object to store and organize papers in'},
+  {left:'in charge of',right:'responsible for something'},
+  {left:'paperclip',right:'an object that slides over papers to keep them together'},
+  {left:'office supply store',right:'a place that sells business supplies'},
+  {left:'tape',right:'a sticky material that keeps objects together'},
+  {left:'staple',right:'a metal object pressed through papers to hold them together'},
+  {left:'order',right:'a request for products'}
+ ]},
+{id:'u1e2',unit:1,type:'complete',note:'Bài tập gốc',title:'Exercise 2 – Write a word that is similar in meaning to the underlined part',
+ items:[
+  {hint:'Joan needs a new bottle of white liquid used for covering mistakes.',pattern:'c - - - - c - i - n - - - l - - d',answer:'correction fluid'},
+  {hint:'Are the new things needed to work here? I’m out of staples.',pattern:'- - p - - - s',answer:'supplies'},
+  {hint:'My writing object is out of ink, so I need a new one.',pattern:'- - e -',answer:'pen'}
+ ]},
+
+{id:'u2e1',unit:2,type:'sort',note:'Bài tập gốc',title:'Exercise 1 – Place the words under the correct heading',
+ cats:['Furniture','Styles'],
+ items:[{w:'reception desk',c:'Furniture'},{w:'traditional',c:'Styles'},{w:'shelf',c:'Furniture'},
+        {w:'modern',c:'Styles'},{w:'office desk',c:'Furniture'},{w:'office chair',c:'Furniture'}]},
+{id:'u2e2',unit:2,type:'mc',note:'Bài tập gốc',title:'Exercise 2 – Check the sentence that uses the underlined parts correctly',
+ items:[
+  {q:'1. Chọn câu dùng đúng cụm “check out”:',o:['Check out these new desks.','Store these files in that office chair.'],a:0,
+   ex:'“check out” = xem thử → “Check out these new desks.” (Hãy xem thử những chiếc bàn mới này.)'},
+  {q:'2. Chọn câu dùng đúng từ “coat rack”:',o:['My office desk is uncomfortable to sit in.','Hang your jacket on the coat rack.'],a:1,
+   ex:'“coat rack” = giá treo áo khoác → treo áo lên giá. Câu A sai vì bàn làm việc không dùng để ngồi.'},
+  {q:'3. Chọn câu dùng đúng từ “filing cabinet”:',o:['This is my great-grandfather’s desk. It’s very modern.','You organize folders in a filing cabinet.'],a:1,
+   ex:'“filing cabinet” = tủ đựng hồ sơ → sắp xếp bìa hồ sơ trong tủ. Câu A sai về nghĩa (bàn của ông cố thì không thể “very modern”).'},
+  {q:'4. Chọn câu dùng đúng cụm “come in”:',o:['The shoes come in black and brown.','This shelf has six drawers and a matching chair.'],a:0,
+   ex:'“come in + màu/loại” = có sẵn với màu/loại đó → “The shoes come in black and brown.”'}
+ ]},
+
+{id:'u5e1',unit:5,type:'fill',note:'Bài tập gốc',title:'Exercise 1 – Fill in the blanks with the correct words',
+ bank:['order form','fill out','keep track of','fax','prepare','documents'],
+ items:[
+  {q:'It’s important to ______ important documents so you don’t lose them.',a:'keep track of',ex:'keep track of = theo dõi, ghi chép để quản lý.'},
+  {q:'It is easier and faster to ______ documents than mail them.',a:'fax',ex:'fax = gửi fax (nhanh hơn gửi thư).'},
+  {q:'A secretary has to prepare and organize many ______.',a:'documents',ex:'documents = tài liệu (danh từ số nhiều).'},
+  {q:'Complete the ______ for new office supplies.',a:'order form',ex:'order form = phiếu đặt hàng.'},
+  {q:'______ this form with your name and address.',a:'fill out',ex:'fill out = điền vào (biểu mẫu). Đầu câu viết hoa: Fill out.'},
+  {q:'Please ______ the document for Mr. Bates and put it on his desk.',a:'prepare',ex:'prepare = chuẩn bị, soạn thảo.'}
+ ]},
+{id:'u5e2',unit:5,type:'mc',note:'Bài tập gốc',title:'Exercise 2 – Place a check next to the correct answer',
+ items:[
+  {q:'Can you send out an email about the meeting tomorrow?',o:['Yes, I just need to turn on my computer.','Sure, the phone is right over there.'],a:0,
+   ex:'Gửi email cần máy tính, không phải điện thoại → chọn A.'},
+  {q:'Can you give me a receipt?',o:['I’ll take two, please.','Yes, let me print it out.'],a:1,
+   ex:'Biên lai có thể in ra → “Yes, let me print it out.”'},
+  {q:'Please type up a business letter for me.',o:['I’ll read it right away.','Who shall I address it to?'],a:1,
+   ex:'Khi đánh máy thư thương mại cần biết người nhận → “Who shall I address it to?”'}
+ ]},
+
+{id:'u10e1',unit:10,type:'mc',note:'Bài tập gốc',title:'Exercise 1 – Choose where the words best fit in the blanks',
+ items:[
+  {q:'This certificate shows that I am a ______ personal assistant. (hard-working / qualified)',o:['hard-working','qualified'],a:1,
+   ex:'“certificate” (chứng chỉ) gắn với “qualified” = đủ trình độ, có bằng cấp.'},
+  {q:'Jane is ______ and never leaves the office until her work is complete. (hard-working / qualified)',o:['hard-working','qualified'],a:0,
+   ex:'Làm việc đến khi xong mới về → “hard-working” = chăm chỉ.'},
+  {q:'Ruth is very ______ and always talks to everybody at the office. (friendly / efficient)',o:['friendly','efficient'],a:0,
+   ex:'Nói chuyện với mọi người → “friendly” = thân thiện.'},
+  {q:'Jacob is ______. He works quickly, and he does the work well. (friendly / efficient)',o:['friendly','efficient'],a:1,
+   ex:'Làm nhanh và làm tốt → “efficient” = hiệu quả.'},
+  {q:'After his ______ job search, Mike starts work on Monday. (successful / organized)',o:['successful','organized'],a:0,
+   ex:'Tìm được việc → “successful” = thành công.'},
+  {q:'Rita is ______. Her papers are always in the right place. (successful / organized)',o:['successful','organized'],a:1,
+   ex:'Giấy tờ luôn đúng chỗ → “organized” = ngăn nắp, có tổ chức.'}
+ ]},
+{id:'u10e2',unit:10,type:'complete',note:'Bài tập gốc',title:'Exercise 2 – Write an answer that is similar in meaning',
+ items:[
+  {hint:'Karen is a very trustworthy secretary.',pattern:'r - - i - - - e',answer:'reliable'},
+  {hint:'Paul is qualified and he also has skills and knowledge from work in the past.',pattern:'e x - - r - - - e',answer:'experience'},
+  {hint:'Tom is knowledgeable about the new office computers.',pattern:'f a - - i - - w - -',answer:'familiar with'},
+  {hint:'Cara is always respectful on the telephone.',pattern:'p o - i - -',answer:'polite'}
+ ]},
+
+{id:'u11e1',unit:11,type:'match',note:'Bài tập gốc',title:'Exercise 1 – Match the words with the definitions',
+ pairs:[
+  {left:'department',right:'a section of a company'},
+  {left:'marketing',right:'the part of a company that advertises a product for sale'},
+  {left:'purchasing',right:'the part of a company that buys new products'},
+  {left:'human resources',right:'the part of a company that hires people'},
+  {left:'sales',right:'the part of a company that sells products'},
+  {left:'employee',right:'a person who works for a company'},
+  {left:'client',right:'a customer'}
+ ]},
+{id:'u11e2',unit:11,type:'fill',note:'Bài tập gốc',title:'Exercise 2 – Fill in the blanks',
+ bank:['vacancy','talent','inquire'],
+ items:[
+  {q:'The marketing department wants to find new ______.',a:'talent',ex:'talent = nhân tài.'},
+  {q:'The human resources department just filled the ______ for a secretary.',a:'vacancy',ex:'vacancy = vị trí tuyển dụng còn trống.'},
+  {q:'The advertisement says to contact the human resources department to ______ about vacancies.',a:'inquire',ex:'inquire about = hỏi thông tin về.'}
+ ]}
+];
+
+/* ---------------- 9 CÂU HỎI TỰ LUẬN ---------------- */
+const OPEN_QUESTIONS = [
+{q:"What supplies does a secretary use at work?",
+ suggested:"A secretary uses pens, paper, folders, tape, staples, paperclips and correction fluid at work.",
+ keys:[
+  {label:'bút (pen/pens)',alts:['pen','pens']},
+  {label:'giấy (paper)',alts:['paper']},
+  {label:'bìa hồ sơ (folder/folders)',alts:['folder','folders']},
+  {label:'băng dính (tape)',alts:['tape']},
+  {label:'ghim bấm (staple/staples)',alts:['staple','staples']},
+  {label:'kẹp giấy (paperclip/paperclips)',alts:['paperclip','paperclips']},
+  {label:'bút xóa (correction fluid)',alts:['correction fluid','correction']}
+ ],
+ vocab:['pen','paper','folder','tape','staple','paperclip','correction fluid','office supplies']},
+
+{q:"Where can you purchase supplies?",
+ suggested:"You can purchase office supplies at an office supply store or online.",
+ keys:[
+  {label:'cửa hàng văn phòng phẩm (office supply store)',alts:['office supply store','supply store','stationery store','office supply shop']},
+  {label:'trực tuyến (online)',alts:['online','internet','website','on the internet']}
+ ],
+ vocab:['purchase','office supply store','online','supplies']},
+
+{q:"Is it good for employee to order their own supplies? Why?",
+ suggested:"No, it isn’t. It is better to have one person in charge of ordering supplies because it saves money on shipping charges and helps the company get discounts on large orders.",
+ keys:[
+  {label:'phủ định: không tốt (no / not / isn’t)',alts:['no','not','isn’t',"isn't",'bad idea','does not']},
+  {label:'một người phụ trách (one person in charge)',alts:['one person','in charge','one employee']},
+  {label:'tiết kiệm phí vận chuyển (shipping charges)',alts:['shipping charge','shipping charges','shipping']},
+  {label:'giảm giá (discount)',alts:['discount','discounts']},
+  {label:'đơn hàng lớn (larger order)',alts:['large order','larger order','large orders','larger orders']}
+ ],
+ vocab:['in charge of','shipping charge','discount','larger order','place an order'],
+ note:'Lưu ý ngữ pháp: trong câu hỏi gốc là “employee”, nhưng cách nói tự nhiên hơn là “employees” (số nhiều).'},
+
+{q:"What furniture is usually in an office?",
+ suggested:"There are usually office desks, office chairs, reception desks, shelves, coat racks and filing cabinets in an office.",
+ keys:[
+  {label:'bàn làm việc (office desk)',alts:['office desk','desk','desks']},
+  {label:'ghế văn phòng (office chair)',alts:['office chair','chair','chairs']},
+  {label:'quầy lễ tân (reception desk)',alts:['reception desk']},
+  {label:'kệ (shelf/shelves)',alts:['shelf','shelves']},
+  {label:'giá treo áo (coat rack)',alts:['coat rack','coat racks']},
+  {label:'tủ hồ sơ (filing cabinet)',alts:['filing cabinet','filing cabinets','cabinet']}
+ ],
+ vocab:['office desk','office chair','reception desk','shelf','coat rack','filing cabinet']},
+
+{q:"Where are some places you can buy office furniture?",
+ suggested:"You can buy office furniture at furniture stores, office furniture retailers or online.",
+ keys:[
+  {label:'cửa hàng nội thất (furniture store)',alts:['furniture store','furniture shop','furniture stores']},
+  {label:'nhà bán lẻ nội thất văn phòng (office furniture retailer)',alts:['office furniture retailer','retailer','retailers']},
+  {label:'trực tuyến (online)',alts:['online','internet','website']}
+ ],
+ vocab:['office furniture','office furniture retailer','retailer','online']},
+
+{q:"What are the duties of a secretary?",
+ suggested:"A secretary prepares legal documents, sends faxes and memos, keeps track of receipts and payments, writes business letters, fills out forms, answers the phone and greets clients.",
+ keys:[
+  {label:'soạn thảo văn bản pháp lý (prepare legal documents)',alts:['prepare','legal document','legal documents','documents']},
+  {label:'gửi fax / ghi nhớ (send faxes, memos)',alts:['fax','faxes','memo','memos']},
+  {label:'theo dõi biên lai và thanh toán (keep track of receipts and payments)',alts:['keep track of','receipt','receipts','payment','payments']},
+  {label:'viết thư thương mại (write business letters)',alts:['business letter','business letters','letter']},
+  {label:'điền biểu mẫu (fill out forms)',alts:['fill out','fill in','form','forms']},
+  {label:'trả lời điện thoại (answer the phone)',alts:['answer the phone','answering the phone','phone']},
+  {label:'chào đón khách hàng (greet clients)',alts:['greet','greeting','client','clients']}
+ ],
+ vocab:['prepare','legal document','fax','memo','keep track of','receipt','payment','business letter','fill out','order form','answer the phone','greet','client']},
+
+{q:"What are the qualities of a good secretary?",
+ suggested:"A good secretary should be hard-working, organized, efficient, reliable, friendly and polite. They should also have good grammar, spelling and computer skills.",
+ keys:[
+  {label:'chăm chỉ (hard-working)',alts:['hard-working','hard working','hardworking','hard-work']},
+  {label:'ngăn nắp (organized)',alts:['organized','organised']},
+  {label:'hiệu quả (efficient)',alts:['efficient']},
+  {label:'đáng tin cậy (reliable)',alts:['reliable']},
+  {label:'thân thiện (friendly)',alts:['friendly']},
+  {label:'lịch sự (polite)',alts:['polite']},
+  {label:'ngữ pháp & chính tả (grammar and spelling)',alts:['grammar','spelling']},
+  {label:'kỹ năng máy tính (computer skills)',alts:['computer','software','typing']}
+ ],
+ vocab:['hard-working','organized','efficient','reliable','friendly','polite','grammar','spelling','software']},
+
+{q:"What departments are there at large companies?",
+ suggested:"Large companies usually have several departments, such as Purchasing, Marketing, Sales and Human Resources.",
+ keys:[
+  {label:'phòng thu mua (Purchasing)',alts:['purchasing','purchase department']},
+  {label:'phòng tiếp thị (Marketing)',alts:['marketing']},
+  {label:'phòng kinh doanh (Sales)',alts:['sales']},
+  {label:'phòng nhân sự (Human Resources)',alts:['human resources','human resource','hr']}
+ ],
+ vocab:['department','purchasing department','marketing department','sales department','human resources']},
+
+{q:"What do employees in those departments do?",
+ suggested:"Purchasing employees search for and buy products. Marketing employees advertise products. Sales employees communicate with clients and sell products. Human Resources employees hire staff and manage employee benefits.",
+ keys:[
+  {label:'thu mua: tìm và mua sản phẩm',alts:['buy','purchase','search for','find products','products']},
+  {label:'tiếp thị: quảng cáo sản phẩm',alts:['advertise','advertising','marketing','promote','design']},
+  {label:'kinh doanh: giao tiếp với khách và bán hàng',alts:['sell','selling','clients','customers','communicate']},
+  {label:'nhân sự: tuyển dụng và phúc lợi',alts:['hire','hiring','recruit','employee benefits','benefits']}
+ ],
+ vocab:['purchasing','marketing','sales','human resources','hire','employee benefits','client']}
+];
+
+/* =========================================================================
+   2. TIỆN ÍCH
+   ========================================================================= */
+const $  = s => document.querySelector(s);
+const $$ = s => Array.from(document.querySelectorAll(s));
+const esc = s => String(s==null?'':s)
+  .replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;')
+  .replace(/"/g,'&quot;').replace(/'/g,'&#39;');
+const escRe = s => String(s).replace(/[.*+?^${}()|[\]\\]/g,'\\$&');
+const shuffle = a => { const r=a.slice(); for(let i=r.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[r[i],r[j]]=[r[j],r[i]];} return r; };
+const pick = (a,n) => shuffle(a).slice(0,n);
+const norm = s => String(s==null?'':s).toLowerCase()
+  .replace(/[’‘]/g,"'").replace(/[“”]/g,'"')
+  .replace(/[.,!?;:"'()\[\]{}\-–—]/g,' ')
+  .replace(/\s+/g,' ').trim();
+const unitOf = id => UNITS.find(u=>u.id===id);
+const unitName = id => { const u=unitOf(id); return u? `Unit ${u.id} – ${u.name}` : ''; };
+
+/* ✅ FIX #1: Hàm so khớp đáp án tiếng Anh có biến thể "/" (VD: "supply / supplies").
+   Cho phép chấp nhận từng biến thể riêng lẻ. */
+function enMatch(user, correct){
+  const u = norm(user);
+  if(!u) return false;
+  const c = norm(correct);
+  if(u === c) return true;
+  // Tách các biến thể phân tách bởi dấu "/" (có thể có khoảng trắng xung quanh)
+  const parts = String(correct).split(/\s*\/\s*/).map(x=>norm(x)).filter(Boolean);
+  if(parts.length > 1 && parts.some(p => u === p)) return true;
+  // Nếu correct có dạng "word1 / word2" và user gõ cụm chỉ chứa 1 biến thể (>=3 ký tự)
+  if(parts.length > 1 && parts.some(p => p.length>=3 && (p.includes(u) || u.includes(p)))) return true;
+  return false;
+}
+
+let toastTimer=null;
+function toast(msg){
+  const t=$('#toast'); t.textContent=msg; t.classList.add('show');
+  clearTimeout(toastTimer); toastTimer=setTimeout(()=>t.classList.remove('show'),2200);
+}
+function speak(text){
+  if(!('speechSynthesis' in window)){ toast('Thiết bị/trình duyệt không hỗ trợ đọc văn bản.'); return; }
+  try{
+    const u=new SpeechSynthesisUtterance(String(text).replace(/\//g,' '));
+    u.lang='en-GB'; u.rate=.92;
+    window.speechSynthesis.cancel();
+    window.speechSynthesis.speak(u);
+    toast('🔊 Giọng đọc do thiết bị tạo – không phải audio bản ngữ.');
+  }catch(e){ toast('Không thể phát âm trên thiết bị này.'); }
+}
+
+/* =========================================================================
+   3. TRẠNG THÁI & LƯU TRỮ
+   ========================================================================= */
+const LS_KEY='officeEnglishProgress_v1';
+
+function defaultState(){
+  return {
+    learned:{}, bookmarked:{}, exercisesDone:{},
+    openAnswers:{}, openDone:{},
+    mistakes:[], activity:[], testScores:[],
+    unitStats:{}, lastView:'dashboard', lastUnit:1,
+    totalCorrect:0, totalAnswered:0
+  };
+}
+let state = defaultState();
+
+function loadState(){
+  try{
+    const raw = localStorage.getItem(LS_KEY);
+    if(!raw) return;
+    const obj = JSON.parse(raw);
+    if(obj && typeof obj==='object'){
+      state = Object.assign(defaultState(), obj);
+      if(!Array.isArray(state.mistakes)) state.mistakes=[];
+      if(!Array.isArray(state.activity)) state.activity=[];
+      if(!Array.isArray(state.testScores)) state.testScores=[];
+    }
+  }catch(e){ console.warn('Không đọc được dữ liệu đã lưu', e); }
+}
+function saveState(){
+  try{ localStorage.setItem(LS_KEY, JSON.stringify(state)); }
+  catch(e){ console.warn('Không lưu được tiến độ', e); }
+}
+function logActivity(text){
+  state.activity.unshift({t:text, ts:Date.now()});
+  if(state.activity.length>25) state.activity.length=25;
+}
+function recordUnit(unit, correct){
+  const k=String(unit);
+  if(!state.unitStats[k]) state.unitStats[k]={c:0,t:0};
+  state.unitStats[k].t++;
+  if(correct) state.unitStats[k].c++;
+  state.totalAnswered++;
+  if(correct) state.totalCorrect++;
+}
+function addMistake(obj){
+  const exists = state.mistakes.find(m=>m.key===obj.key && !m.mastered);
+  if(!exists) state.mistakes.unshift(Object.assign({ts:Date.now(),mastered:false},obj));
+  if(state.mistakes.length>200) state.mistakes.length=200;
+}
+function markLearned(id,val){
+  if(val) state.learned[id]=true; else delete state.learned[id];
+  saveState(); refreshTopbar();
+}
+function vocabByUnit(u){ return VOCAB.filter(v=>v.units.includes(u)); }
+function learnedCount(){ return Object.keys(state.learned).length; }
+function unitProgress(u){
+  const list=vocabByUnit(u); if(!list.length) return 0;
+  const done=list.filter(v=>state.learned[v.id]).length;
+  return Math.round(done/list.length*100);
+}
+function refreshTopbar(){
+  $('#topbarProgress').textContent = learnedCount()+'/'+VOCAB.length+' từ';
+}
+
+/* =========================================================================
+   4. ĐIỀU HƯỚNG
+   ========================================================================= */
+const VIEWS = ['dashboard','vocab','units','reading','exercises','open','test','progress'];
+let currentView='dashboard';
+
+function showView(name, opts){
+  if(VIEWS.indexOf(name)<0) name='dashboard';
+  currentView=name;
+  state.lastView=name; saveState();
+  $$('.sidebar a').forEach(a=>a.classList.toggle('active', a.dataset.view===name));
+  closeSidebar();
+  try{ window.scrollTo({top:0,behavior:'auto'}); }catch(e){ window.scrollTo(0,0); }
+  const main=$('#main');
+  main.innerHTML='';
+  if(name==='dashboard') renderDashboard(main);
+  else if(name==='vocab') renderVocab(main, opts);
+  else if(name==='units') renderUnits(main, opts);
+  else if(name==='reading') renderReading(main, opts);
+  else if(name==='exercises') renderExercises(main, opts);
+  else if(name==='open') renderOpen(main, opts);
+  else if(name==='test') renderTest(main);
+  else if(name==='progress') renderProgress(main);
+}
+function openSidebar(){ $('#sidebar').classList.add('open'); $('#scrim').classList.add('show'); }
+function closeSidebar(){ $('#sidebar').classList.remove('open'); $('#scrim').classList.remove('show'); }
+
+/* =========================================================================
+   5. DASHBOARD
+   ========================================================================= */
+function renderDashboard(main){
+  const learned=learnedCount();
+  const total=VOCAB.length;
+  const exDone=Object.keys(state.exercisesDone).length;
+  const acc = state.totalAnswered ? Math.round(state.totalCorrect/state.totalAnswered*100) : 0;
+  const openDone=Object.keys(state.openDone).length;
+  const bookmarked=Object.keys(state.bookmarked).length;
+
+  let unitBars='';
+  UNITS.forEach(u=>{
+    const p=unitProgress(u.id);
+    const l=vocabByUnit(u.id).filter(v=>state.learned[v.id]).length;
+    unitBars+=`<div class="unitrow">
+      <div class="top"><span>Unit ${u.id} – ${esc(u.name)}</span><span>${l}/${vocabByUnit(u.id).length} (${p}%)</span></div>
+      <div class="progressbar"><div style="width:${p}%"></div></div>
+    </div>`;
+  });
+
+  const act = state.activity.length
+    ? state.activity.slice(0,8).map(a=>`<div class="kv"><span>${esc(a.t)}</span><span class="note">${new Date(a.ts).toLocaleString('vi-VN')}</span></div>`).join('')
+    : '<div class="note">Chưa có hoạt động nào. Hãy bắt đầu học!</div>';
+
+  const best = state.testScores.length ? Math.max.apply(null,state.testScores.map(s=>s.pct)) : 0;
+
+  main.innerHTML = `
+  <h1>📊 Dashboard – Tổng quan tiến độ</h1>
+  <div class="grid stats">
+    <div class="stat"><div class="num">${total}</div><div class="lbl">Tổng số mục từ vựng</div></div>
+    <div class="stat"><div class="num">${learned}</div><div class="lbl">Từ đã học</div></div>
+    <div class="stat"><div class="num">${exDone}</div><div class="lbl">Bài tập đã hoàn thành</div></div>
+    <div class="stat"><div class="num">${acc}%</div><div class="lbl">Độ chính xác chung</div></div>
+    <div class="stat"><div class="num">${openDone}/9</div><div class="lbl">Câu tự luận đã làm</div></div>
+    <div class="stat"><div class="num">${bookmarked}</div><div class="lbl">Từ khó đang ôn</div></div>
+    <div class="stat"><div class="num">${best}%</div><div class="lbl">Điểm test cao nhất</div></div>
+    <div class="stat"><div class="num">${state.mistakes.filter(m=>!m.mastered).length}</div><div class="lbl">Lỗi sai chưa khắc phục</div></div>
+  </div>
+
+  <div class="card">
+    <h2>Tiến độ theo từng bài</h2>
+    ${unitBars}
+  </div>
+
+  <div class="card">
+    <h2>Hành động nhanh</h2>
+    <div class="row">
+      <button class="btn primary" data-go="units">▶️ Continue Learning (Học tiếp)</button>
+      <button class="btn" data-go="progress">🔁 Review Mistakes (Xem lại lỗi sai)</button>
+      <button class="btn" data-go="vocab">📚 Thư viện từ vựng</button>
+      <button class="btn" data-go="test">🎯 Làm bài kiểm tra</button>
+    </div>
+  </div>
+
+  <div class="card">
+    <h2>Hoạt động gần đây</h2>
+    ${act}
+  </div>
+
+  <div class="card">
+    <h2>Cài đặt</h2>
+    <div class="row">
+      <button class="btn ghost small" id="toggleViDash">👁️ Ẩn / hiện tiếng Việt trong thư viện</button>
+      <button class="btn danger small" id="resetBtn">🗑️ Xoá toàn bộ tiến độ</button>
+    </div>
+    <p class="note" style="margin-top:8px">Dữ liệu học tập được lưu cục bộ trong trình duyệt của bạn (localStorage), không gửi lên máy chủ.</p>
+  </div>`;
+
+  main.querySelectorAll('[data-go]').forEach(b=>b.addEventListener('click',()=>showView(b.dataset.go)));
+  $('#toggleViDash').addEventListener('click',()=>{
+    document.body.classList.toggle('hide-vi-mode');
+    toast(document.body.classList.contains('hide-vi-mode')?'Đã ẩn tiếng Việt':'Đã hiện tiếng Việt');
+  });
+  $('#resetBtn').addEventListener('click',()=>{
+    if(confirm('Bạn có chắc muốn xoá toàn bộ tiến độ học tập? Hành động này không thể hoàn tác.')){
+      state=defaultState(); saveState(); refreshTopbar(); showView('dashboard'); toast('Đã xoá toàn bộ tiến độ.');
+    }
+  });
+}
+
+/* =========================================================================
+   6. THƯ VIỆN TỪ VỰNG
+   ========================================================================= */
+const POS_LIST = Array.from(new Set(VOCAB.map(v=>v.pos))).sort();
+
+function renderVocab(main, opts){
+  opts = opts || {};
+  let query = opts.q || '';
+  let unitF = opts.unit || 'all';
+  let posF  = 'all';
+  let sortMode = 'az';
+
+  main.innerHTML = `
+  <h1>📚 Thư viện từ vựng</h1>
+  <div class="card">
+    <div class="grid two">
+      <div>
+        <label class="field">Tìm kiếm (tiếng Anh hoặc tiếng Việt)
+          <input type="search" id="vSearch" placeholder="Ví dụ: reliable, đáng tin cậy..." value="${esc(query)}">
+        </label>
+      </div>
+      <div>
+        <label class="field">Lọc theo bài
+          <select id="vUnit">
+            <option value="all">Tất cả các bài</option>
+            ${UNITS.map(u=>`<option value="${u.id}" ${String(unitF)===String(u.id)?'selected':''}>Unit ${u.id} – ${esc(u.name)}</option>`).join('')}
+          </select>
+        </label>
+      </div>
+      <div>
+        <label class="field">Lọc theo từ loại
+          <select id="vPos">
+            <option value="all">Tất cả từ loại</option>
+            ${POS_LIST.map(p=>`<option value="${esc(p)}">${esc(p)}</option>`).join('')}
+          </select>
+        </label>
+      </div>
+      <div>
+        <label class="field">Sắp xếp
+          <select id="vSort">
+            <option value="az">A → Z (tiếng Anh)</option>
+            <option value="za">Z → A</option>
+            <option value="unit">Theo bài học</option>
+          </select>
+        </label>
+      </div>
+    </div>
+    <div class="row" style="margin-top:6px">
+      <button class="btn small" id="vToggleVi">👁️ Ẩn / hiện tiếng Việt</button>
+      <button class="btn small" id="vRandom">🎲 Ôn từ ngẫu nhiên</button>
+      <button class="btn small" id="vPractice">🔁 Luyện tập Anh↔Việt</button>
+      <button class="btn small" id="vBookmarked">⭐ Chỉ hiện từ khó</button>
+      <button class="btn small" id="vLearned">✅ Chỉ hiện từ chưa học</button>
+    </div>
+  </div>
+  <div id="vPracticeBox"></div>
+  <div id="vCount" class="note" style="margin:6px 2px"></div>
+  <div id="vList"></div>`;
+
+  const listEl = main.querySelector('#vList');
+  const countEl = main.querySelector('#vCount');
+
+  let onlyBookmarked=false, onlyUnlearned=false;
+
+  function draw(){
+    let list = VOCAB.slice();
+    if(unitF!=='all') list = list.filter(v=>v.units.includes(Number(unitF)));
+    if(posF!=='all')  list = list.filter(v=>v.pos===posF);
+    if(onlyBookmarked) list = list.filter(v=>state.bookmarked[v.id]);
+    if(onlyUnlearned)  list = list.filter(v=>!state.learned[v.id]);
+    const nq = norm(query);
+    if(nq){
+      list = list.filter(v => norm(v.en).includes(nq) || norm(v.vi).includes(nq));
+    }
+    if(sortMode==='az') list.sort((a,b)=>a.en.localeCompare(b.en,'en'));
+    else if(sortMode==='za') list.sort((a,b)=>b.en.localeCompare(a.en,'en'));
+    else list.sort((a,b)=>a.units[0]-b.units[0] || a.en.localeCompare(b.en,'en'));
+
+    countEl.textContent = `Hiển thị ${list.length} / ${VOCAB.length} mục từ vựng.`;
+    if(!list.length){ listEl.innerHTML='<div class="card note">Không tìm thấy từ vựng phù hợp.</div>'; return; }
+    listEl.innerHTML = list.map(v=>vocabCardHTML(v)).join('');
+  }
+
+  $('#vSearch').addEventListener('input', e=>{ query=e.target.value; draw(); });
+  $('#vUnit').addEventListener('change', e=>{ unitF=e.target.value; draw(); });
+  $('#vPos').addEventListener('change', e=>{ posF=e.target.value; draw(); });
+  $('#vSort').addEventListener('change', e=>{ sortMode=e.target.value; draw(); });
+  $('#vToggleVi').addEventListener('click', ()=>{
+    document.body.classList.toggle('hide-vi-mode');
+    toast(document.body.classList.contains('hide-vi-mode')?'Đã ẩn tiếng Việt':'Đã hiện tiếng Việt');
+  });
+  $('#vRandom').addEventListener('click', ()=>{
+    const v = VOCAB[Math.floor(Math.random()*VOCAB.length)];
+    listEl.innerHTML = `<div class="card"><h2>🎲 Từ ngẫu nhiên</h2>${vocabCardHTML(v,true)}</div>` + listEl.innerHTML;
+    window.scrollTo({top:0,behavior:'smooth'});
+  });
+  $('#vBookmarked').addEventListener('click', e=>{
+    onlyBookmarked=!onlyBookmarked; e.target.classList.toggle('on',onlyBookmarked); draw();
+  });
+  $('#vLearned').addEventListener('click', e=>{
+    onlyUnlearned=!onlyUnlearned; e.target.classList.toggle('on',onlyUnlearned); draw();
+  });
+  $('#vPractice').addEventListener('click', ()=>{ renderRecallPractice(main.querySelector('#vPracticeBox')); });
+
+  draw();
+}
+
+function vocabCardHTML(v, open){
+  const learned=!!state.learned[v.id], marked=!!state.bookmarked[v.id];
+  return `<div class="vcard ${learned?'learned':''}">
+    <div class="vhead">
+      <div><span class="vword">${esc(v.en)}</span><span class="vpos">(${esc(v.pos)})</span></div>
+      <div class="row" style="gap:6px">
+        <span class="ipa">${esc(v.ipa)}</span>
+        <button class="mini" data-speak="${esc(v.en)}" title="Đọc bằng giọng thiết bị">🔊</button>
+      </div>
+    </div>
+    <div class="vvi hide-vi">→ ${esc(v.vi)}</div>
+    <div class="vex"><b>Example:</b> ${esc(v.ex)}<br>
+      <span class="hide-vi"><i>→ ${esc(v.exVi)}</i></span></div>
+    <div class="vfoot">
+      <span class="tag">Unit ${v.units.join(', ')}</span>
+      <button class="mini ${learned?'on':''}" data-learn="${v.id}">${learned?'✓ Đã học':'○ Đánh dấu đã học'}</button>
+      <button class="mini ${marked?'on':''}" data-book="${v.id}">${marked?'★ Đang ôn':'☆ Lưu từ khó'}</button>
+    </div>
+  </div>`;
+}
+
+/* --- Luyện tập Anh ↔ Việt --- */
+function renderRecallPractice(box){
+  box.innerHTML = `
+  <div class="card">
+    <h2>🔁 Luyện tập Anh ↔ Việt</h2>
+    <div class="row">
+      <button class="btn small primary" id="rpEnVi">Anh → Việt</button>
+      <button class="btn small" id="rpViEn">Việt → Anh</button>
+      <button class="btn small ghost" id="rpClose">Đóng</button>
+    </div>
+    <div id="rpBody" style="margin-top:10px"></div>
+  </div>`;
+  box.querySelector('#rpClose').addEventListener('click',()=>box.innerHTML='');
+  box.querySelector('#rpEnVi').addEventListener('click',()=>recallRound(box,'en2vi'));
+  box.querySelector('#rpViEn').addEventListener('click',()=>recallRound(box,'vi2en'));
+  recallRound(box,'en2vi');
+}
+function recallRound(box,mode){
+  const v = VOCAB[Math.floor(Math.random()*VOCAB.length)];
+  const body = box.querySelector('#rpBody');
+  const promptHTML = mode==='en2vi'
+    ? `<div class="qtext">Từ tiếng Anh: <b>${esc(v.en)}</b> ${esc(v.ipa)} <button class="mini" data-speak="${esc(v.en)}">🔊</button><br>Hãy viết nghĩa tiếng Việt:</div>`
+    : `<div class="qtext">Nghĩa tiếng Việt: <b>${esc(v.vi)}</b><br>Hãy viết từ/cụm tiếng Anh:</div>`;
+  body.innerHTML = `${promptHTML}
+    <input type="text" id="rpInput" placeholder="Nhập câu trả lời...">
+    <div class="row" style="margin-top:8px">
+      <button class="btn primary small" id="rpCheck">Kiểm tra</button>
+      <button class="btn small" id="rpShow">Xem đáp án</button>
+      <button class="btn small ghost" id="rpNext">Câu khác →</button>
+    </div>
+    <div class="feedback" id="rpFb"></div>`;
+  const fb = body.querySelector('#rpFb');
+  body.querySelector('#rpNext').addEventListener('click',()=>recallRound(box,mode));
+  body.querySelector('#rpShow').addEventListener('click',()=>{
+    fb.className='feedback show info';
+    fb.innerHTML = mode==='en2vi'
+      ? `Đáp án: <b>${esc(v.vi)}</b>`
+      : `Đáp án: <b>${esc(v.en)}</b> ${esc(v.ipa)}`;
+  });
+  body.querySelector('#rpCheck').addEventListener('click',()=>{
+    const ans = body.querySelector('#rpInput').value;
+    if(!ans.trim()){ toast('Hãy nhập câu trả lời.'); return; }
+    let ok;
+    // ✅ FIX #1b: dùng enMatch thay vì so khớp cứng (hỗ trợ "supply / supplies")
+    if(mode==='vi2en') ok = enMatch(ans, v.en);
+    else ok = viMatch(ans, v.vi);
+    recordUnit(v.units[0], ok);
+    if(ok){
+      fb.className='feedback show ok';
+      fb.innerHTML = `✅ Chính xác! <b>${esc(v.en)}</b> ${esc(v.ipa)} – ${esc(v.vi)}`;
+      logActivity('Luyện tập Anh↔Việt: đúng "'+v.en+'"');
+    }else{
+      fb.className='feedback show err';
+      fb.innerHTML = `❌ Chưa đúng. Đáp án: <b>${mode==='en2vi'?esc(v.vi):esc(v.en)}</b><br><span class="note">Hãy thử lại hoặc bấm “Câu khác”.</span>`;
+      addMistake({key:'recall-'+mode+'-'+v.id, unit:v.units[0], type:'recall',
+        prompt: mode==='en2vi'? `Nghĩa tiếng Việt của "${v.en}"` : `Từ tiếng Anh của "${v.vi}"`,
+        user: ans, correct: mode==='en2vi'? v.vi : v.en,
+        explanation:`${v.en} ${v.ipa} = ${v.vi}. Ví dụ: ${v.ex}`});
+    }
+    saveState(); refreshTopbar();
+  });
+}
+function viMatch(user, vi){
+  const u = norm(user);
+  if(!u) return false;
+  if(u===norm(vi)) return true;
+  const stop = ['của','và','các','một','sự','việc','để','trong','với','về','là','cho','có','ra','lên','bằng','những','người','được'];
+  const words = norm(vi).split(' ').filter(w=>w.length>2 && stop.indexOf(w)<0);
+  if(!words.length) return norm(vi).includes(u);
+  const hit = words.filter(w=>u.includes(w)).length;
+  return hit/words.length >= 0.5;
+}
+
+/* =========================================================================
+   7. HỌC THEO BÀI
+   ========================================================================= */
+const UNIT_OBJECTIVES = {
+1:['Nhận biết và sử dụng từ vựng về đồ dùng văn phòng.',
+   'Hiểu vì sao nên để một người chịu trách nhiệm mua đồ dùng.',
+   'Dùng được các cụm từ: in charge of, place an order, save money on shipping charges.'],
+2:['Nhận biết từ vựng về nội thất văn phòng và phong cách nội thất.',
+   'Phân biệt danh từ chỉ đồ vật và tính từ chỉ phong cách.',
+   'Hiểu thông tin trong một bài quảng cáo bán hàng.'],
+5:['Nắm được từ vựng về tài liệu và công việc thư ký.',
+   'Dùng đúng các động từ: prepare, fax, keep track of, fill out, type up.',
+   'Hiểu một tin tuyển dụng và các nhiệm vụ được liệt kê.'],
+10:['Mô tả phẩm chất của một nhân viên giỏi.',
+    'Phân biệt các tính từ chỉ phẩm chất: hard-working, organized, efficient, reliable, qualified, polite.',
+    'Hiểu yêu cầu tuyển dụng của một công ty luật.'],
+11:['Gọi tên và mô tả chức năng của các phòng ban trong công ty.',
+    'Phân biệt purchasing, marketing, sales và human resources.',
+    'Dùng được các cụm từ: be responsible for, have good communication skills, inquire about vacancies.']
+};
+
+function renderUnits(main, opts){
+  opts=opts||{};
+  let u = Number(opts.unit) || Number(state.lastUnit) || 1;
+  if(!UNITS.find(x=>x.id===u)) u=1;
+  state.lastUnit=u; saveState();
+
+  const tabs = UNITS.map(x=>`<button class="tab ${x.id===u?'active':''}" data-unit="${x.id}">Unit ${x.id}</button>`).join('');
+
+  main.innerHTML = `
+    <h1>📖 Học theo bài</h1>
+    <div class="tabs">${tabs}</div>
+    <div id="unitBody"></div>`;
+
+  main.querySelectorAll('.tab').forEach(t=>t.addEventListener('click',()=>{
+    state.lastUnit=Number(t.dataset.unit); saveState(); showView('units',{unit:Number(t.dataset.unit)});
+  }));
+
+  renderUnitBody(main.querySelector('#unitBody'), u);
+}
+
+function renderUnitBody(box, u){
+  const unit = unitOf(u);
+  const vocab = vocabByUnit(u);
+  const colloc = vocab.filter(v=>v.pos==='collocation');
+  const reading = READINGS[u];
+  const exs = EXERCISES.filter(e=>e.unit===u);
+  const openIdx = {1:[0,1,2],2:[3,4],5:[5],10:[6],11:[7,8]}[u] || [];
+
+  const goals = (UNIT_OBJECTIVES[u]||[]).map(g=>`<li>${esc(g)}</li>`).join('');
+  const vocabHTML = vocab.map(v=>vocabCardHTML(v)).join('');
+  const collocHTML = colloc.length
+    ? colloc.map(c=>`<div class="list-item"><b>${esc(c.en)}</b> ${esc(c.ipa)} – ${esc(c.vi)}<br><span class="note">${esc(c.ex)}</span></div>`).join('')
+    : '<div class="note">Không có cụm từ riêng cho bài này.</div>';
+
+  const exHTML = exs.length
+    ? exs.map(e=>exerciseSetHTML(e)).join('')
+    : '<div class="note">Không có bài tập gốc cho bài này.</div>';
+
+  const answersHTML = exs.map(e=>{
+    let body='';
+    if(e.type==='match'){
+      body = e.pairs.map((p,i)=>`<div class="kv"><span>${i+1}. <b>${esc(p.left)}</b></span><span>${esc(p.right)}</span></div>`).join('');
+    } else if(e.type==='sort'){
+      const cats={}; e.items.forEach(it=>{ (cats[it.c]=cats[it.c]||[]).push(it.w); });
+      body = Object.keys(cats).map(c=>`<div class="kv"><span><b>${esc(c)}</b></span><span>${cats[c].map(esc).join(', ')}</span></div>`).join('');
+    } else if(e.type==='complete'){
+      body = e.items.map((it,i)=>`<div class="kv"><span>${i+1}. ${esc(it.hint)}</span><span><b>${esc(it.answer)}</b></span></div>`).join('');
+    } else if(e.type==='fill'){
+      body = e.items.map((it,i)=>`<div class="kv"><span>${i+1}. ${esc(it.q)}</span><span><b>${esc(it.a)}</b></span></div>`).join('');
+    } else if(e.type==='mc'){
+      body = e.items.map((it,i)=>`<div class="kv"><span>${esc(it.q)}</span><span><b>${String.fromCharCode(65+it.a)}. ${esc(it.o[it.a])}</b></span></div>`).join('');
+    }
+    return `<h3>${esc(e.title)} – Đáp án</h3>${body}`;
+  }).join('');
+
+  const openHTML = openIdx.length
+    ? openIdx.map(i=>`<div class="list-item"><b>${i+1}. ${esc(OPEN_QUESTIONS[i].q)}</b><br>
+        <span class="note">Luyện nói/viết – trả lời đầy đủ bằng tiếng Anh. Xem gợi ý ở mục “Câu hỏi tự luận”.</span></div>`).join('')
+    : '<div class="note">Không có câu hỏi tự luận cho bài này.</div>';
+
+  box.innerHTML = `
+  <div class="card">
+    <span class="tag">Unit ${unit.id}</span>
+    <h2 style="margin-top:8px">${esc(unit.name)} – ${esc(unit.vi)}</h2>
+    <h3>🎯 Mục tiêu bài học</h3>
+    <ul>${goals}</ul>
+  </div>
+
+  <div class="card">
+    <h2>📚 Danh sách từ vựng (${vocab.length} mục)</h2>
+    <div class="row" style="margin-bottom:8px">
+      <button class="btn small" id="uToggleVi">👁️ Ẩn / hiện tiếng Việt</button>
+      <button class="btn small" id="uMarkAll">✅ Đánh dấu tất cả đã học</button>
+    </div>
+    ${vocabHTML}
+  </div>
+
+  <div class="card">
+    <h2>🔗 Cụm từ quan trọng (collocations)</h2>
+    ${collocHTML}
+  </div>
+
+  <div class="card">
+    <h2>📄 Bài đọc</h2>
+    <div class="passage">
+      <h3>${esc(reading.title)}</h3>
+      ${reading.by?`<p class="note" style="margin-top:-6px">${esc(reading.by)}</p>`:''}
+      ${reading.html}
+    </div>
+    <div class="row" style="margin-top:10px">
+      <button class="btn small" data-speak="${esc(reading.title)}">🔊 Đọc tiêu đề</button>
+      <button class="btn small primary" data-goreading="${unit.id}">📝 Làm câu hỏi đọc hiểu</button>
+    </div>
+  </div>
+
+  <div class="card">
+    <h2>✏️ Bài tập từ vựng của bài</h2>
+    ${exHTML}
+    <details style="margin-top:12px">
+      <summary style="cursor:pointer;font-weight:700;color:var(--primary-dark)">📋 Xem đáp án &amp; giải thích</summary>
+      <div style="margin-top:10px">${answersHTML}</div>
+    </details>
+  </div>
+
+  <div class="card">
+    <h2>💬 Luyện nói / viết theo bài</h2>
+    ${openHTML}
+    <button class="btn small primary" data-goopen="1" style="margin-top:8px">Đi tới phần Câu hỏi tự luận</button>
+  </div>`;
+
+  box.querySelector('#uToggleVi').addEventListener('click',()=>{
+    document.body.classList.toggle('hide-vi-mode');
+    toast(document.body.classList.contains('hide-vi-mode')?'Đã ẩn tiếng Việt':'Đã hiện tiếng Việt');
+  });
+  box.querySelector('#uMarkAll').addEventListener('click',()=>{
+    vocab.forEach(v=>state.learned[v.id]=true);
+    saveState(); refreshTopbar(); toast('Đã đánh dấu '+vocab.length+' từ là đã học.'); showView('units',{unit:u});
+  });
+  box.querySelectorAll('[data-goreading]').forEach(b=>b.addEventListener('click',()=>showView('reading',{unit:Number(b.dataset.goreading)})));
+  box.querySelector('[data-goopen]').addEventListener('click',()=>showView('open'));
+  attachExerciseHandlers(box);
+}
+
+/* =========================================================================
+   8. BÀI TẬP – RENDER CHUNG
+   ========================================================================= */
+function exerciseSetHTML(e){
+  let inner='';
+  if(e.type==='match'){
+    const rights = shuffle(e.pairs.map(p=>p.right));
+    inner = e.pairs.map((p,i)=>`
+      <div class="matchrow">
+        <div class="mleft">${i+1}. ${esc(p.left)}</div>
+        <select data-match="${i}">
+          <option value="">— chọn định nghĩa —</option>
+          ${rights.map(r=>`<option value="${esc(r)}">${esc(r)}</option>`).join('')}
+        </select>
+      </div>`).join('');
+    inner += `<div class="row" style="margin-top:8px">
+      <button class="btn primary small" data-checkmatch="${e.id}">Kiểm tra</button>
+      <button class="btn small" data-resetmatch="${e.id}">Làm lại</button></div>`;
+  }
+  else if(e.type==='sort'){
+    inner = `<div class="chips" id="sortpool-${e.id}">
+      ${shuffle(e.items.map(i=>i.w)).map(w=>`<span class="chip" draggable="true" data-sortword="${esc(w)}" data-set="${e.id}">${esc(w)}</span>`).join('')}
+    </div>
+    <p class="note">Kéo thả (hoặc chạm để chọn rồi chạm vào ô) để xếp từ vào đúng nhóm.</p>
+    <div class="grid two">
+      ${e.cats.map(c=>`<div class="zone" data-zone="${esc(c)}" data-set="${e.id}"><h4>${esc(c)}</h4><div class="zonebody"></div></div>`).join('')}
+    </div>
+    <div class="row" style="margin-top:8px">
+      <button class="btn primary small" data-checksort="${e.id}">Kiểm tra</button>
+      <button class="btn small" data-resetsort="${e.id}">Làm lại</button></div>`;
+  }
+  else if(e.type==='complete'){
+    inner = e.items.map((it,i)=>`
+      <div class="qbox">
+        <div class="qtext">${i+1}. ${esc(it.hint)}</div>
+        <div class="note" style="font-family:monospace;margin-bottom:6px">${esc(it.pattern)}</div>
+        <input type="text" data-complete="${i}" data-set="${e.id}" placeholder="Nhập từ hoàn chỉnh...">
+      </div>`).join('');
+    inner += `<div class="row"><button class="btn primary small" data-checkcomplete="${e.id}">Kiểm tra</button>
+      <button class="btn small" data-resetcomplete="${e.id}">Làm lại</button></div>`;
+  }
+  else if(e.type==='fill'){
+    inner = `<p class="note">Word bank: <b>${e.bank.map(esc).join(' · ')}</b></p>` +
+      e.items.map((it,i)=>`
+      <div class="qbox">
+        <div class="qtext">${i+1}. ${esc(it.q)}</div>
+        <input type="text" data-fill="${i}" data-set="${e.id}" placeholder="Nhập từ còn thiếu...">
+      </div>`).join('');
+    inner += `<div class="row"><button class="btn primary small" data-checkfill="${e.id}">Kiểm tra</button>
+      <button class="btn small" data-resetfill="${e.id}">Làm lại</button></div>`;
+  }
+  else if(e.type==='mc'){
+    inner = e.items.map((it,i)=>`
+      <div class="qbox">
+        <div class="qtext">${esc(it.q)}</div>
+        ${it.o.map((o,j)=>`<button class="opt" data-mcset="${e.id}" data-mcq="${i}" data-mco="${j}">${String.fromCharCode(65+j)}. ${esc(o)}</button>`).join('')}
+        <div class="feedback" id="mcfb-${e.id}-${i}"></div>
+      </div>`).join('');
+  }
+  return `<div class="exset" data-set="${e.id}" style="margin-bottom:18px">
+    <h3>${esc(e.title)} <span class="tag grey">${esc(e.note||'')}</span></h3>
+    ${inner}
+    <div class="feedback" id="fb-${e.id}"></div>
+  </div>`;
+}
+
+const EX_MAP = {}; EXERCISES.forEach(e=>EX_MAP[e.id]=e);
+
+function attachExerciseHandlers(root){
+  /* Matching */
+  root.querySelectorAll('[data-checkmatch]').forEach(btn=>{
+    btn.addEventListener('click',()=>{
+      const set = EX_MAP[btn.dataset.checkmatch];
+      const wrap = root.querySelector(`.exset[data-set="${set.id}"]`);
+      let ok=0;
+      set.pairs.forEach((p,i)=>{
+        const sel = wrap.querySelector(`select[data-match="${i}"]`);
+        const correct = sel.value === p.right;
+        sel.style.borderColor = correct ? 'var(--ok)' : 'var(--err)';
+        if(correct) ok++; else {
+          addMistake({key:set.id+'-m'+i, unit:set.unit, type:'match',
+            prompt:`Nối "${p.left}" với định nghĩa đúng`, user: sel.value||'(bỏ trống)', correct:p.right,
+            explanation:`"${p.left}" = ${p.right}`});
+        }
+      });
+      recordUnit(set.unit, ok===set.pairs.length);
+      const fb = wrap.querySelector('#fb-'+set.id);
+      fb.className='feedback show '+(ok===set.pairs.length?'ok':'err');
+      fb.innerHTML = ok===set.pairs.length
+        ? `✅ Tuyệt vời! Bạn nối đúng tất cả ${set.pairs.length} cặp.`
+        : `Bạn đúng ${ok}/${set.pairs.length}. Ô đúng được viền xanh, ô sai viền đỏ. Hãy thử lại!`;
+      if(ok===set.pairs.length){ state.exercisesDone[set.id]=true; logActivity('Hoàn thành '+set.title); }
+      saveState();
+    });
+  });
+  root.querySelectorAll('[data-resetmatch]').forEach(btn=>{
+    btn.addEventListener('click',()=>{
+      const wrap = root.querySelector(`.exset[data-set="${btn.dataset.resetmatch}"]`);
+      wrap.querySelectorAll('select').forEach(s=>{ s.value=''; s.style.borderColor=''; });
+      const fb=wrap.querySelector('#fb-'+btn.dataset.resetmatch); fb.className='feedback'; fb.innerHTML='';
+    });
+  });
+
+  /* Sorting */
+  root.querySelectorAll('.zone').forEach(zone=>{
+    zone.addEventListener('click',()=>{
+      const chip = root.querySelector('.chip.sel');
+      if(chip && chip.dataset.set===zone.dataset.set){
+        zone.querySelector('.zonebody').appendChild(chip);
+        chip.classList.remove('sel');
+      }
+    });
+    zone.addEventListener('dragover',e=>{e.preventDefault(); zone.classList.add('over');});
+    zone.addEventListener('dragleave',()=>zone.classList.remove('over'));
+    zone.addEventListener('drop',e=>{
+      e.preventDefault(); zone.classList.remove('over');
+      const w = e.dataTransfer.getData('text/plain');
+      const chip = root.querySelector(`.chip[data-sortword="${CSS.escape(w)}"][data-set="${zone.dataset.set}"]`);
+      if(chip) zone.querySelector('.zonebody').appendChild(chip);
+    });
+  });
+  root.querySelectorAll('.chip[data-sortword]').forEach(chip=>{
+    chip.addEventListener('click',()=>{
+      const same = root.querySelectorAll(`.chip[data-set="${chip.dataset.set}"].sel`);
+      same.forEach(c=>{ if(c!==chip) c.classList.remove('sel'); });
+      chip.classList.toggle('sel');
+    });
+    chip.addEventListener('dragstart',e=>{ e.dataTransfer.setData('text/plain', chip.dataset.sortword); });
+  });
+  root.querySelectorAll('[data-checksort]').forEach(btn=>{
+    btn.addEventListener('click',()=>{
+      const set = EX_MAP[btn.dataset.checksort];
+      let ok=0;
+      set.items.forEach(it=>{
+        const chip = root.querySelector(`.chip[data-sortword="${CSS.escape(it.w)}"][data-set="${set.id}"]`);
+        if(!chip) return;
+        const parentZone = chip.closest('.zone');
+        const inPool = chip.closest('.chips');
+        if(inPool){ chip.style.background='var(--err-bg)'; chip.style.borderColor='var(--err)'; return; }
+        if(parentZone && parentZone.dataset.zone===it.c){ chip.style.background='var(--ok-bg)'; chip.style.borderColor='var(--ok)'; ok++; }
+        else{
+          chip.style.background='var(--err-bg)'; chip.style.borderColor='var(--err)';
+          addMistake({key:set.id+'-s-'+it.w, unit:set.unit, type:'sort',
+            prompt:`Xếp "${it.w}" vào đúng nhóm`, user: parentZone? parentZone.dataset.zone : '(chưa xếp)',
+            correct: it.c, explanation:`"${it.w}" thuộc nhóm "${it.c}".`});
+        }
+      });
+      recordUnit(set.unit, ok===set.items.length);
+      const fb = root.querySelector('#fb-'+set.id);
+      fb.className='feedback show '+(ok===set.items.length?'ok':'err');
+      fb.innerHTML = ok===set.items.length ? '✅ Chính xác! Bạn đã xếp đúng tất cả.' : `Bạn xếp đúng ${ok}/${set.items.length}. Từ đúng được tô xanh, từ sai tô đỏ.`;
+      if(ok===set.items.length){ state.exercisesDone[set.id]=true; logActivity('Hoàn thành '+set.title); }
+      saveState();
+    });
+  });
+  root.querySelectorAll('[data-resetsort]').forEach(btn=>{
+    btn.addEventListener('click',()=>{
+      const set = EX_MAP[btn.dataset.resetsort];
+      const pool = root.querySelector('#sortpool-'+set.id);
+      root.querySelectorAll(`.chip[data-set="${set.id}"]`).forEach(c=>{
+        c.style.background=''; c.style.borderColor=''; c.classList.remove('sel');
+        pool.appendChild(c);
+      });
+      const fb=root.querySelector('#fb-'+set.id); fb.className='feedback'; fb.innerHTML='';
+    });
+  });
+
+  /* Complete the word */
+  root.querySelectorAll('[data-checkcomplete]').forEach(btn=>{
+    btn.addEventListener('click',()=>{
+      const set=EX_MAP[btn.dataset.checkcomplete];
+      const wrap=root.querySelector(`.exset[data-set="${set.id}"]`);
+      let ok=0;
+      set.items.forEach((it,i)=>{
+        const inp = wrap.querySelector(`input[data-complete="${i}"]`);
+        const good = norm(inp.value)===norm(it.answer);
+        inp.style.borderColor = good?'var(--ok)':'var(--err)';
+        if(good) ok++;
+        else if(inp.value.trim()){
+          addMistake({key:set.id+'-c'+i, unit:set.unit, type:'complete',
+            prompt:`${it.hint} (${it.pattern})`, user:inp.value, correct:it.answer,
+            explanation:`Đáp án đúng là "${it.answer}".`});
+        }
+      });
+      recordUnit(set.unit, ok===set.items.length);
+      const fb=wrap.querySelector('#fb-'+set.id);
+      fb.className='feedback show '+(ok===set.items.length?'ok':'err');
+      fb.innerHTML = ok===set.items.length ? '✅ Chính xác toàn bộ!' : `Bạn đúng ${ok}/${set.items.length}. Đáp án: ${set.items.map(x=>x.answer).join(' · ')}`;
+      if(ok===set.items.length){ state.exercisesDone[set.id]=true; logActivity('Hoàn thành '+set.title); }
+      saveState();
+    });
+  });
+  root.querySelectorAll('[data-resetcomplete]').forEach(btn=>{
+    btn.addEventListener('click',()=>{
+      const wrap=root.querySelector(`.exset[data-set="${btn.dataset.resetcomplete}"]`);
+      wrap.querySelectorAll('input').forEach(i=>{ i.value=''; i.style.borderColor=''; });
+      const fb=wrap.querySelector('#fb-'+btn.dataset.resetcomplete); fb.className='feedback'; fb.innerHTML='';
+    });
+  });
+
+  /* Fill in the blanks */
+  root.querySelectorAll('[data-checkfill]').forEach(btn=>{
+    btn.addEventListener('click',()=>{
+      const set=EX_MAP[btn.dataset.checkfill];
+      const wrap=root.querySelector(`.exset[data-set="${set.id}"]`);
+      let ok=0;
+      set.items.forEach((it,i)=>{
+        const inp = wrap.querySelector(`input[data-fill="${i}"]`);
+        const good = norm(inp.value)===norm(it.a);
+        inp.style.borderColor = good?'var(--ok)':'var(--err)';
+        if(good) ok++;
+        else if(inp.value.trim()){
+          addMistake({key:set.id+'-f'+i, unit:set.unit, type:'fill',
+            prompt:it.q, user:inp.value, correct:it.a, explanation: it.ex || `Đáp án: ${it.a}`});
+        }
+      });
+      recordUnit(set.unit, ok===set.items.length);
+      const fb=wrap.querySelector('#fb-'+set.id);
+      fb.className='feedback show '+(ok===set.items.length?'ok':'err');
+      fb.innerHTML = ok===set.items.length ? '✅ Chính xác toàn bộ!' : `Bạn đúng ${ok}/${set.items.length}. Đáp án: ${set.items.map(x=>x.a).join(' · ')}`;
+      if(ok===set.items.length){ state.exercisesDone[set.id]=true; logActivity('Hoàn thành '+set.title); }
+      saveState();
+    });
+  });
+  root.querySelectorAll('[data-resetfill]').forEach(btn=>{
+    btn.addEventListener('click',()=>{
+      const wrap=root.querySelector(`.exset[data-set="${btn.dataset.resetfill}"]`);
+      wrap.querySelectorAll('input').forEach(i=>{ i.value=''; i.style.borderColor=''; });
+      const fb=wrap.querySelector('#fb-'+btn.dataset.resetfill); fb.className='feedback'; fb.innerHTML='';
+    });
+  });
+
+  /* Multiple choice inside exercise sets */
+  root.querySelectorAll('[data-mcset]').forEach(btn=>{
+    btn.addEventListener('click',()=>{
+      const set=EX_MAP[btn.dataset.mcset];
+      const qi=Number(btn.dataset.mcq), oi=Number(btn.dataset.mco);
+      const item=set.items[qi];
+      const wrap=root.querySelector(`.exset[data-set="${set.id}"]`);
+      wrap.querySelectorAll(`[data-mcset="${set.id}"][data-mcq="${qi}"]`).forEach(b=>b.classList.remove('sel','correct','wrong'));
+      const good = oi===item.a;
+      btn.classList.add(good?'correct':'wrong');
+      if(!good) wrap.querySelectorAll(`[data-mcset="${set.id}"][data-mcq="${qi}"]`)[item.a].classList.add('correct');
+      const fb = wrap.querySelector(`#mcfb-${set.id}-${qi}`);
+      fb.className='feedback show '+(good?'ok':'err');
+      fb.innerHTML = good
+        ? `✅ Chính xác! ${esc(item.ex||'')}`
+        : `❌ Chưa đúng. Đáp án đúng: <b>${String.fromCharCode(65+item.a)}. ${esc(item.o[item.a])}</b><br>${esc(item.ex||'')}`;
+      recordUnit(set.unit, good);
+      if(!good){
+        addMistake({key:set.id+'-mc'+qi, unit:set.unit, type:'mc',
+          prompt:item.q, user:item.o[oi], correct:item.o[item.a], explanation:item.ex||''});
+      }
+      saveState();
+    });
+  });
+}
+
+/* =========================================================================
+   9. LUYỆN ĐỌC HIỂU
+   ========================================================================= */
+function renderReading(main, opts){
+  opts=opts||{};
+  let u = Number(opts.unit) || Number(state.lastUnit) || 1;
+  if(!READINGS[u]) u=1;
+  const tabs = UNITS.map(x=>`<button class="tab ${x.id===u?'active':''}" data-unit="${x.id}">Unit ${x.id}</button>`).join('');
+  main.innerHTML = `
+    <h1>📝 Luyện đọc hiểu</h1>
+    <div class="tabs">${tabs}</div>
+    <div id="readBody"></div>`;
+  main.querySelectorAll('.tab').forEach(t=>t.addEventListener('click',()=>showView('reading',{unit:Number(t.dataset.unit)})));
+
+  const box = main.querySelector('#readBody');
+  const r = READINGS[u];
+  const qs = READING_QS[u] || [];
+  let answered = 0;
+
+  box.innerHTML = `
+  <div class="card">
+    <span class="tag">Unit ${u}</span>
+    <h2 style="margin-top:8px">${esc(r.title)}</h2>
+    ${r.by?`<p class="note" style="margin-top:-6px">${esc(r.by)}</p>`:''}
+    <div class="passage">${r.html}</div>
+  </div>
+  <div class="card">
+    <h2>Câu hỏi đọc hiểu <span class="tag orange">Luyện tập thêm</span></h2>
+    <p class="note">Các câu hỏi dưới đây do ứng dụng tạo thêm, dựa trực tiếp trên nội dung bài đọc gốc.</p>
+    <div class="progressbar" style="margin-bottom:12px"><div id="readProg" style="width:0%"></div></div>
+    <div id="readQs"></div>
+  </div>`;
+
+  const qWrap = box.querySelector('#readQs');
+  qWrap.innerHTML = qs.map((q,i)=>{
+    if(q.t==='mc'){
+      return `<div class="qbox" data-q="${i}">
+        <div class="qtext">${i+1}. ${esc(q.q)}</div>
+        ${q.o.map((o,j)=>`<button class="opt" data-rq="${i}" data-ro="${j}">${String.fromCharCode(65+j)}. ${esc(o)}</button>`).join('')}
+        <div class="feedback" id="rfb-${i}"></div>
+      </div>`;
+    }
+    return `<div class="qbox" data-q="${i}">
+      <div class="qtext">${i+1}. ${esc(q.q)} <span class="tag grey">True / False</span></div>
+      <button class="opt" data-rq="${i}" data-ro="true">True (Đúng)</button>
+      <button class="opt" data-rq="${i}" data-ro="false">False (Sai)</button>
+      <div class="feedback" id="rfb-${i}"></div>
+    </div>`;
+  }).join('');
+
+  qWrap.querySelectorAll('[data-rq]').forEach(btn=>{
+    btn.addEventListener('click',()=>{
+      const i=Number(btn.dataset.rq), q=qs[i];
+      const isTF = q.t==='tf';
+      const chosen = isTF ? (btn.dataset.ro==='true') : Number(btn.dataset.ro);
+      // ✅ FIX #3: Bỏ ternary trùng lặp (trước đây cả hai nhánh đều giống nhau)
+      const good = chosen===q.a;
+      const qbox = qWrap.querySelector(`.qbox[data-q="${i}"]`);
+      const already = qbox.dataset.done==='1';
+      qbox.querySelectorAll('.opt').forEach(b=>b.classList.remove('sel','correct','wrong'));
+      const correctBtn = isTF
+        ? qbox.querySelector(`.opt[data-ro="${q.a?'true':'false'}"]`)
+        : qbox.querySelectorAll('.opt')[q.a];
+      if(good){
+        btn.classList.add('correct');
+        if(correctBtn) correctBtn.classList.add('correct');
+      }else{
+        btn.classList.add('wrong');
+        if(correctBtn) correctBtn.classList.add('correct');
+      }
+      const fb=qWrap.querySelector('#rfb-'+i);
+      fb.className='feedback show '+(good?'ok':'err');
+      fb.innerHTML = (good?'✅ Chính xác! ':'❌ Chưa đúng. ') + esc(q.ex);
+      if(!already){ qbox.dataset.done='1'; answered++; box.querySelector('#readProg').style.width = Math.round(answered/qs.length*100)+'%'; }
+      recordUnit(u, good);
+      if(!good){
+        addMistake({key:'read-'+u+'-'+i, unit:u, type:'reading',
+          prompt:q.q, user: isTF?(chosen?'True':'False'):q.o[chosen],
+          correct: isTF?(q.a?'True':'False'):q.o[q.a], explanation:q.ex});
+      }
+      saveState();
+    });
+  });
+}
+
+/* =========================================================================
+   10. BÀI TẬP TỪ VỰNG (tổng hợp + tạo thêm)
+   ========================================================================= */
+function renderExercises(main, opts){
+  opts=opts||{};
+  let u = Number(opts.unit) || Number(state.lastUnit) || 1;
+  if(!UNITS.find(x=>x.id===u)) u=1;
+  const tabs = UNITS.map(x=>`<button class="tab ${x.id===u?'active':''}" data-unit="${x.id}">Unit ${x.id}</button>`).join('');
+
+  main.innerHTML = `
+  <h1>✏️ Bài tập từ vựng</h1>
+  <div class="tabs">${tabs}</div>
+  <div class="card">
+    <h2>🎮 Bài tập tạo thêm (nhiều dạng)</h2>
+    <p class="note">Các dạng: Matching (nối), Multiple choice (trắc nghiệm), Fill in the blanks (điền khuyết),
+    Word completion (hoàn thành từ), Word sorting (phân loại), Vietnamese→English, English→Vietnamese, Sentence construction (đặt câu).</p>
+    <div class="row">
+      <button class="btn small primary" data-gen="match">🔗 Matching</button>
+      <button class="btn small primary" data-gen="mc">🔘 Multiple choice</button>
+      <button class="btn small primary" data-gen="fill">✍️ Fill in the blanks</button>
+      <button class="btn small primary" data-gen="complete">🧩 Word completion</button>
+      <button class="btn small primary" data-gen="sort">📂 Word sorting</button>
+      <button class="btn small primary" data-gen="vn2en">🇻🇳→🇬🇧 Việt→Anh</button>
+      <button class="btn small primary" data-gen="en2vi">🇬🇧→🇻🇳 Anh→Việt</button>
+      <button class="btn small primary" data-gen="sentence">📝 Sentence construction</button>
+    </div>
+  </div>
+  <div id="genBox"></div>
+  <div class="card">
+    <h2>📘 Bài tập gốc của Unit ${u}</h2>
+    <div id="origBox"></div>
+  </div>`;
+
+  main.querySelectorAll('.tab').forEach(t=>t.addEventListener('click',()=>{
+    state.lastUnit=Number(t.dataset.unit); saveState(); showView('exercises',{unit:Number(t.dataset.unit)});
+  }));
+
+  const origBox = main.querySelector('#origBox');
+  const exs = EXERCISES.filter(e=>e.unit===u);
+  origBox.innerHTML = exs.length ? exs.map(e=>exerciseSetHTML(e)).join('')
+    : '<div class="note">Không có bài tập gốc cho bài này.</div>';
+  attachExerciseHandlers(origBox);
+
+  const genBox = main.querySelector('#genBox');
+  main.querySelectorAll('[data-gen]').forEach(b=>{
+    b.addEventListener('click',()=>{ generateExercise(genBox, b.dataset.gen, u); });
+  });
+  generateExercise(genBox,'mc',u);
+}
+
+function generateExercise(box, type, unit){
+  const pool = vocabByUnit(unit);
+  if(!pool.length){ box.innerHTML='<div class="card note">Không có dữ liệu.</div>'; return; }
+
+  if(type==='match'){
+    const items = pick(pool, Math.min(5,pool.length));
+    const rights = shuffle(items.map(i=>i.vi));
+    box.innerHTML = `<div class="card">
+      <h2>🔗 Matching – Nối từ với nghĩa (Unit ${unit})</h2>
+      ${items.map((it,i)=>`<div class="matchrow">
+        <div class="mleft">${i+1}. ${esc(it.en)} <span class="ipa">${esc(it.ipa)}</span></div>
+        <select data-gm="${i}">
+          <option value="">— chọn nghĩa —</option>
+          ${rights.map(r=>`<option value="${esc(r)}">${esc(r)}</option>`).join('')}
+        </select></div>`).join('')}
+      <div class="row"><button class="btn primary small" id="gmc">Kiểm tra</button>
+      <button class="btn small" id="gmr">Làm lại</button></div>
+      <div class="feedback" id="gmfb"></div>
+    </div>`;
+    box.querySelector('#gmr').addEventListener('click',()=>generateExercise(box,'match',unit));
+    box.querySelector('#gmc').addEventListener('click',()=>{
+      let ok=0;
+      items.forEach((it,i)=>{
+        const sel = box.querySelector(`select[data-gm="${i}"]`);
+        const good = sel.value===it.vi;
+        sel.style.borderColor = good?'var(--ok)':'var(--err)';
+        if(good) ok++; else addMistake({key:'gen-match-'+unit+'-'+it.id, unit, type:'match',
+          prompt:`Nối "${it.en}" với nghĩa đúng`, user:sel.value||'(bỏ trống)', correct:it.vi,
+          explanation:`${it.en} ${it.ipa} = ${it.vi}`});
+      });
+      recordUnit(unit, ok===items.length);
+      const fb=box.querySelector('#gmfb');
+      fb.className='feedback show '+(ok===items.length?'ok':'err');
+      fb.innerHTML = ok===items.length ? '✅ Chính xác tất cả!' : `Bạn đúng ${ok}/${items.length}. Hãy thử lại.`;
+      saveState();
+    });
+    return;
+  }
+
+  if(type==='sort'){
+    const cats = ['Danh từ / Cụm danh từ','Tính từ','Động từ / Cụm động từ'];
+    // ✅ FIX #2: Đưa "adjective phrase" về đúng nhóm Tính từ (trước đây bị nhảy sang nhóm Động từ)
+    const classify = v => {
+      const p = v.pos.toLowerCase();
+      if(p.includes('adjective')) return 'Tính từ';
+      if(p.includes('verb')) return 'Động từ / Cụm động từ';
+      if(p.includes('noun')) return 'Danh từ / Cụm danh từ';
+      if(p.includes('phrase') || p.includes('collocation')) return 'Động từ / Cụm động từ';
+      return 'Danh từ / Cụm danh từ';
+    };
+    const items = pick(pool, Math.min(8,pool.length)).map(v=>({w:v.en,c:classify(v)}));
+    box.innerHTML = `<div class="card">
+      <h2>📂 Word sorting – Phân loại từ loại (Unit ${unit})</h2>
+      <div class="chips" id="gspool">${shuffle(items.map(i=>i.w)).map(w=>`<span class="chip" draggable="true" data-gw="${esc(w)}">${esc(w)}</span>`).join('')}</div>
+      <p class="note">Chạm để chọn từ, sau đó chạm vào ô nhóm. Hoặc kéo thả.</p>
+      <div class="grid three">${cats.map(c=>`<div class="zone" data-gzone="${esc(c)}"><h4>${esc(c)}</h4><div class="zonebody"></div></div>`).join('')}</div>
+      <div class="row" style="margin-top:8px"><button class="btn primary small" id="gsc">Kiểm tra</button>
+      <button class="btn small" id="gsr">Làm lại</button></div>
+      <div class="feedback" id="gsfb"></div>
+    </div>`;
+    const root=box;
+    root.querySelectorAll('.zone').forEach(z=>{
+      z.addEventListener('click',()=>{
+        const chip=root.querySelector('.chip.sel');
+        if(chip){ z.querySelector('.zonebody').appendChild(chip); chip.classList.remove('sel'); }
+      });
+      z.addEventListener('dragover',e=>{e.preventDefault(); z.classList.add('over');});
+      z.addEventListener('dragleave',()=>z.classList.remove('over'));
+      z.addEventListener('drop',e=>{
+        e.preventDefault(); z.classList.remove('over');
+        const w=e.dataTransfer.getData('text/plain');
+        const chip=root.querySelector(`.chip[data-gw="${CSS.escape(w)}"]`);
+        if(chip) z.querySelector('.zonebody').appendChild(chip);
+      });
+    });
+    root.querySelectorAll('.chip[data-gw]').forEach(c=>{
+      c.addEventListener('click',()=>{
+        root.querySelectorAll('.chip.sel').forEach(x=>{ if(x!==c) x.classList.remove('sel'); });
+        c.classList.toggle('sel');
+      });
+      c.addEventListener('dragstart',e=>e.dataTransfer.setData('text/plain', c.dataset.gw));
+    });
+    root.querySelector('#gsr').addEventListener('click',()=>generateExercise(box,'sort',unit));
+    root.querySelector('#gsc').addEventListener('click',()=>{
+      let ok=0;
+      items.forEach(it=>{
+        const chip=root.querySelector(`.chip[data-gw="${CSS.escape(it.w)}"]`);
+        if(!chip) return;
+        const z=chip.closest('.zone');
+        if(z && z.dataset.gzone===it.c){ chip.style.background='var(--ok-bg)'; chip.style.borderColor='var(--ok)'; ok++; }
+        else{ chip.style.background='var(--err-bg)'; chip.style.borderColor='var(--err)';
+          addMistake({key:'gen-sort-'+unit+'-'+it.w, unit, type:'sort',
+            prompt:`Xếp "${it.w}" vào đúng nhóm từ loại`, user: z? z.dataset.gzone:'(chưa xếp)', correct:it.c,
+            explanation:`"${it.w}" thuộc nhóm "${it.c}".`});
+        }
+      });
+      recordUnit(unit, ok===items.length);
+      const fb=root.querySelector('#gsfb');
+      fb.className='feedback show '+(ok===items.length?'ok':'err');
+      fb.innerHTML = ok===items.length?'✅ Chính xác!':`Bạn đúng ${ok}/${items.length}.`;
+      saveState();
+    });
+    return;
+  }
+
+  if(type==='sentence'){
+    const items = pick(pool,5);
+    box.innerHTML = `<div class="card">
+      <h2>📝 Sentence construction – Đặt câu với từ vựng (Unit ${unit})</h2>
+      <p class="note">Hãy viết một câu tiếng Anh hoàn chỉnh có sử dụng từ cho sẵn. Câu cần có ít nhất 5 từ.
+      Ứng dụng kiểm tra sự xuất hiện của từ khoá và độ dài câu (đây là đánh giá gần đúng, không phải chấm điểm AI).</p>
+      ${items.map((v,i)=>`<div class="qbox">
+        <div class="qtext">${i+1}. Viết câu với: <b>${esc(v.en)}</b> ${esc(v.ipa)} – ${esc(v.vi)}</div>
+        <textarea data-gs="${i}" placeholder="Nhập câu của bạn..."></textarea>
+        <div class="row" style="margin-top:6px">
+          <button class="btn small primary" data-gscheck="${i}">Kiểm tra</button>
+          <button class="btn small" data-gsmodel="${i}">Xem câu mẫu</button>
+        </div>
+        <div class="feedback" id="gsfb-${i}"></div>
+      </div>`).join('')}
+    </div>`;
+    items.forEach((v,i)=>{
+      box.querySelector(`[data-gscheck="${i}"]`).addEventListener('click',()=>{
+        const txt = box.querySelector(`textarea[data-gs="${i}"]`).value.trim();
+        const fb = box.querySelector(`#gsfb-${i}`);
+        const word = v.en.split(' / ')[0].split(' ')[0];
+        const hasWord = norm(txt).includes(norm(word));
+        const wc = txt.split(/\s+/).filter(Boolean).length;
+        const good = hasWord && wc>=5;
+        fb.className='feedback show '+(good?'ok':'err');
+        if(good){
+          fb.innerHTML = `✅ Câu của bạn có sử dụng "${esc(word)}" và đủ độ dài. Tốt lắm! (Câu mẫu: <i>${esc(v.ex)}</i>)`;
+          state.exercisesDone['gen-sentence-'+unit+'-'+v.id]=true;
+        }else{
+          fb.innerHTML = `❌ ${!hasWord?'Câu chưa chứa từ khoá <b>'+esc(word)+'</b>. ':''}${wc<5?'Câu cần ít nhất 5 từ. ':''}
+          Câu mẫu: <i>${esc(v.ex)}</i>`;
+          addMistake({key:'gen-sentence-'+v.id, unit, type:'sentence',
+            prompt:`Đặt câu với "${v.en}"`, user:txt||'(bỏ trống)', correct:v.ex,
+            explanation:`Câu mẫu: ${v.ex} – ${v.exVi}`});
+        }
+        recordUnit(unit, good); saveState();
+      });
+      box.querySelector(`[data-gsmodel="${i}"]`).addEventListener('click',()=>{
+        const fb=box.querySelector(`#gsfb-${i}`);
+        fb.className='feedback show info';
+        fb.innerHTML = `Câu mẫu: <b>${esc(v.ex)}</b><br><i>${esc(v.exVi)}</i>`;
+      });
+    });
+    return;
+  }
+
+  if(type==='complete'){
+    const items = pick(pool.filter(v=>/^[a-zA-Z-]{4,}$/.test(v.en.split(' / ')[0])), Math.min(6,pool.length));
+    if(!items.length){ box.innerHTML='<div class="card note">Không đủ dữ liệu.</div>'; return; }
+    box.innerHTML = `<div class="card">
+      <h2>🧩 Word completion – Hoàn thành từ (Unit ${unit})</h2>
+      ${items.map((v,i)=>{
+        const w=v.en.split(' / ')[0];
+        const pat = w[0]+' '+Array(Math.max(w.length-1,1)).fill('-').join(' ');
+        return `<div class="qbox">
+          <div class="qtext">${i+1}. ${esc(v.vi)} <span class="note">(${w.length} chữ cái)</span></div>
+          <div class="note" style="font-family:monospace;margin-bottom:6px">${esc(pat)}</div>
+          <input type="text" data-gc="${i}" placeholder="Nhập từ...">
+          <div class="feedback" id="gcfb-${i}"></div>
+        </div>`;
+      }).join('')}
+      <button class="btn primary small" id="gcc">Kiểm tra tất cả</button>
+    </div>`;
+    box.querySelector('#gcc').addEventListener('click',()=>{
+      let ok=0;
+      items.forEach((v,i)=>{
+        const w=v.en.split(' / ')[0];
+        const inp=box.querySelector(`input[data-gc="${i}"]`);
+        const good=norm(inp.value)===norm(w);
+        inp.style.borderColor = good?'var(--ok)':'var(--err)';
+        const fb=box.querySelector(`#gcfb-${i}`);
+        fb.className='feedback show '+(good?'ok':'err');
+        fb.innerHTML = good?'✅ Đúng!':`❌ Đáp án: <b>${esc(w)}</b> ${esc(v.ipa)} – ${esc(v.vi)}`;
+        if(good) ok++; else addMistake({key:'gen-complete-'+v.id, unit, type:'complete',
+          prompt:`Hoàn thành từ có nghĩa "${v.vi}"`, user:inp.value, correct:w, explanation:`Đáp án: ${w} ${v.ipa}`});
+      });
+      recordUnit(unit, ok===items.length);
+      toast(`Đúng ${ok}/${items.length}`);
+      saveState();
+    });
+    return;
+  }
+
+  if(type==='fill'){
+    const items = [];
+    pick(pool, Math.min(20,pool.length)).forEach(v=>{
+      const w=v.en.split(' / ')[0];
+      if(/[()\/]/.test(w)) return;
+      const re = new RegExp('\\b'+escRe(w)+'\\b','i');
+      if(re.test(v.ex)) items.push({v, blank:v.ex.replace(re,'______')});
+    });
+    const finalItems = items.slice(0,6);
+    if(!finalItems.length){ box.innerHTML='<div class="card note">Không đủ dữ liệu cho dạng bài này.</div>'; return; }
+    box.innerHTML = `<div class="card">
+      <h2>✍️ Fill in the blanks – Điền từ còn thiếu (Unit ${unit})</h2>
+      ${finalItems.map((it,i)=>`<div class="qbox">
+        <div class="qtext">${i+1}. ${esc(it.blank)}</div>
+        <input type="text" data-gf="${i}" placeholder="Nhập từ...">
+        <div class="feedback" id="gffb-${i}"></div>
+      </div>`).join('')}
+      <button class="btn primary small" id="gfc">Kiểm tra tất cả</button>
+    </div>`;
+    box.querySelector('#gfc').addEventListener('click',()=>{
+      let ok=0;
+      finalItems.forEach((it,i)=>{
+        const w=it.v.en.split(' / ')[0];
+        const inp=box.querySelector(`input[data-gf="${i}"]`);
+        const good=norm(inp.value)===norm(w);
+        inp.style.borderColor=good?'var(--ok)':'var(--err)';
+        const fb=box.querySelector(`#gffb-${i}`);
+        fb.className='feedback show '+(good?'ok':'err');
+        fb.innerHTML = good?'✅ Đúng!':`❌ Đáp án: <b>${esc(w)}</b> – ${esc(it.v.vi)}`;
+        if(good) ok++; else addMistake({key:'gen-fill-'+it.v.id, unit, type:'fill',
+          prompt:it.blank, user:inp.value, correct:w, explanation:`${w} ${it.v.ipa} = ${it.v.vi}`});
+      });
+      recordUnit(unit, ok===finalItems.length);
+      toast(`Đúng ${ok}/${finalItems.length}`);
+      saveState();
+    });
+    return;
+  }
+
+  if(type==='vn2en' || type==='en2vi'){
+    const items = pick(pool, Math.min(6,pool.length));
+    const isVn2En = type==='vn2en';
+    box.innerHTML = `<div class="card">
+      <h2>${isVn2En?'🇻🇳→🇬🇧 Việt → Anh':'🇬🇧→🇻🇳 Anh → Việt'} (Unit ${unit})</h2>
+      ${items.map((v,i)=>`<div class="qbox">
+        <div class="qtext">${i+1}. ${isVn2En? esc(v.vi)+` <span class="note">(${esc(v.pos)})</span>` : esc(v.en)+` <span class="ipa">${esc(v.ipa)}</span>`}</div>
+        <input type="text" data-gr="${i}" placeholder="${isVn2En?'Nhập từ/cụm tiếng Anh...':'Nhập nghĩa tiếng Việt...'}">
+        <div class="feedback" id="grfb-${i}"></div>
+      </div>`).join('')}
+      <button class="btn primary small" id="grc">Kiểm tra tất cả</button>
+    </div>`;
+    box.querySelector('#grc').addEventListener('click',()=>{
+      let ok=0;
+      items.forEach((v,i)=>{
+        const inp=box.querySelector(`input[data-gr="${i}"]`);
+        // ✅ FIX #1c: dùng enMatch cho VN→EN, viMatch cho EN→VI
+        const good = isVn2En ? enMatch(inp.value, v.en) : viMatch(inp.value, v.vi);
+        inp.style.borderColor=good?'var(--ok)':'var(--err)';
+        const fb=box.querySelector(`#grfb-${i}`);
+        fb.className='feedback show '+(good?'ok':'err');
+        fb.innerHTML = good?'✅ Chính xác!':`❌ Đáp án: <b>${isVn2En?esc(v.en):esc(v.vi)}</b>${isVn2En?' '+esc(v.ipa):''}`;
+        if(good) ok++; else addMistake({key:'gen-recall-'+type+'-'+v.id, unit, type:'recall',
+          prompt: isVn2En? `Từ tiếng Anh của "${v.vi}"` : `Nghĩa tiếng Việt của "${v.en}"`,
+          user: inp.value, correct: isVn2En? v.en : v.vi,
+          explanation:`${v.en} ${v.ipa} = ${v.vi}. Ví dụ: ${v.ex}`});
+      });
+      recordUnit(unit, ok===items.length);
+      toast(`Đúng ${ok}/${items.length}`);
+      saveState();
+    });
+    return;
+  }
+
+  /* Multiple choice mặc định */
+  const items = pick(pool, Math.min(8,pool.length));
+  const qs = items.map(v=>{
+    const distract = pick(pool.filter(x=>x.id!==v.id), 3).map(x=>x.vi);
+    const options = shuffle([v.vi].concat(distract));
+    return {v, options, correct: options.indexOf(v.vi)};
+  });
+  box.innerHTML = `<div class="card">
+    <h2>🔘 Multiple choice – Chọn nghĩa đúng (Unit ${unit})</h2>
+    ${qs.map((q,i)=>`<div class="qbox">
+      <div class="qtext">${i+1}. <b>${esc(q.v.en)}</b> <span class="ipa">${esc(q.v.ipa)}</span> (${esc(q.v.pos)})</div>
+      ${q.options.map((o,j)=>`<button class="opt" data-gmc="${i}" data-gmo="${j}">${String.fromCharCode(65+j)}. ${esc(o)}</button>`).join('')}
+      <div class="feedback" id="gmcfb-${i}"></div>
+    </div>`).join('')}
+  </div>`;
+  box.querySelectorAll('[data-gmc]').forEach(btn=>{
+    btn.addEventListener('click',()=>{
+      const i=Number(btn.dataset.gmc), j=Number(btn.dataset.gmo);
+      const q=qs[i];
+      const qbox = btn.closest('.qbox');
+      qbox.querySelectorAll('.opt').forEach(b=>b.classList.remove('sel','correct','wrong'));
+      const good = j===q.correct;
+      btn.classList.add(good?'correct':'wrong');
+      if(!good) qbox.querySelectorAll('.opt')[q.correct].classList.add('correct');
+      const fb=qbox.querySelector('#gmcfb-'+i);
+      fb.className='feedback show '+(good?'ok':'err');
+      fb.innerHTML = good
+        ? `✅ Chính xác! ${esc(q.v.en)} = ${esc(q.v.vi)}. Ví dụ: ${esc(q.v.ex)}`
+        : `❌ Chưa đúng. Đáp án: <b>${esc(q.v.vi)}</b><br>${esc(q.v.en)} ${esc(q.v.ipa)}. Ví dụ: ${esc(q.v.ex)}`;
+      recordUnit(unit, good);
+      if(!good) addMistake({key:'gen-mc-'+q.v.id, unit, type:'mc',
+        prompt:`Nghĩa của "${q.v.en}"`, user:q.options[j], correct:q.v.vi,
+        explanation:`${q.v.en} ${q.v.ipa} = ${q.v.vi}. Ví dụ: ${q.v.ex}`});
+      saveState();
+    });
+  });
+}
+
+/* =========================================================================
+   11. CÂU HỎI TỰ LUẬN
+   ========================================================================= */
+function renderOpen(main){
+  main.innerHTML = `
+  <h1>💬 Câu hỏi tự luận – Open-ended Questions</h1>
+  <div class="card">
+    <p>Hãy trả lời bằng tiếng Anh. Bạn có thể <b>kiểm tra</b> (đánh giá gần đúng dựa trên từ khoá),
+    <b>xem đáp án gợi ý</b>, <b>xem từ vựng hữu ích</b>, <b>sửa lại</b> và <b>lưu</b> câu trả lời.</p>
+    <p class="note">⚠️ Lưu ý: hệ thống chấm điểm dựa trên từ khoá và chạy hoàn toàn trong trình duyệt,
+    <b>không phải AI</b>. Nếu bạn diễn đạt khác đi mà vẫn đúng ý, câu trả lời vẫn có thể được chấp nhận —
+    hãy đối chiếu với đáp án gợi ý.</p>
+    <div class="row"><button class="btn small" id="openToggleAll">👁️ Ẩn / hiện tất cả đáp án gợi ý</button></div>
+  </div>
+  <div id="openList"></div>`;
+
+  const list = main.querySelector('#openList');
+  list.innerHTML = OPEN_QUESTIONS.map((q,i)=>`
+    <div class="card" data-oq="${i}">
+      <div class="qtext" style="font-size:1rem">Câu ${i+1}. ${esc(q.q)}</div>
+      ${q.note?`<p class="note">📌 ${esc(q.note)}</p>`:''}
+      <textarea data-oa="${i}" placeholder="Nhập câu trả lời tiếng Anh của bạn...">${esc(state.openAnswers[i]||'')}</textarea>
+      <div class="row" style="margin-top:8px">
+        <button class="btn small primary" data-ocheck="${i}">✔️ Check My Answer</button>
+        <button class="btn small" data-oshow="${i}">👀 Show Suggested Answer</button>
+        <button class="btn small" data-ohide="${i}">🙈 Hide Suggested Answer</button>
+        <button class="btn small" data-ovocab="${i}">📚 Show Useful Vocabulary</button>
+        <button class="btn small ghost" data-otry="${i}">🔄 Try Again</button>
+        <button class="btn small" data-osave="${i}">💾 Save Answer</button>
+      </div>
+      <div class="answerbox hidden" id="osug-${i}"><b>Suggested answer:</b><br>${esc(q.suggested)}</div>
+      <div class="answerbox hidden" id="ovoc-${i}"><b>Useful vocabulary:</b><br>${q.vocab.map(v=>`<span class="tag" style="margin:2px">${esc(v)}</span>`).join('')}</div>
+      <div class="feedback" id="ofb-${i}"></div>
+    </div>`).join('');
+
+  list.querySelectorAll('[data-oshow]').forEach(b=>b.addEventListener('click',()=>{
+    const i=b.dataset.oshow; const el=list.querySelector('#osug-'+i); el.classList.remove('hidden');
+  }));
+  list.querySelectorAll('[data-ohide]').forEach(b=>b.addEventListener('click',()=>{
+    const i=b.dataset.ohide; list.querySelector('#osug-'+i).classList.add('hidden');
+  }));
+  list.querySelectorAll('[data-ovocab]').forEach(b=>b.addEventListener('click',()=>{
+    const i=b.dataset.ovocab; const el=list.querySelector('#ovoc-'+i); el.classList.toggle('hidden');
+  }));
+  list.querySelectorAll('[data-otry]').forEach(b=>b.addEventListener('click',()=>{
+    const i=b.dataset.otry;
+    const ta=list.querySelector(`textarea[data-oa="${i}"]`);
+    ta.value=''; ta.focus();
+    const fb=list.querySelector('#ofb-'+i); fb.className='feedback'; fb.innerHTML='';
+    list.querySelector('#osug-'+i).classList.add('hidden');
+  }));
+  list.querySelectorAll('[data-osave]').forEach(b=>b.addEventListener('click',()=>{
+    const i=b.dataset.osave;
+    state.openAnswers[i]=list.querySelector(`textarea[data-oa="${i}"]`).value;
+    state.openDone[i]=true;
+    logActivity('Đã lưu câu trả lời tự luận số '+(Number(i)+1));
+    saveState();
+    toast('💾 Đã lưu câu trả lời '+ (Number(i)+1));
+  }));
+  list.querySelectorAll('[data-ocheck]').forEach(b=>b.addEventListener('click',()=>{
+    const i=Number(b.dataset.ocheck);
+    const txt=list.querySelector(`textarea[data-oa="${i}"]`).value;
+    const fb=list.querySelector('#ofb-'+i);
+    if(!txt.trim()){
+      fb.className='feedback show err';
+      fb.innerHTML='❌ Bạn chưa nhập câu trả lời. Hãy viết câu trả lời rồi bấm kiểm tra.';
+      return;
+    }
+    const res = checkOpenAnswer(i, txt);
+    let color = res.score>=70 ? 'ok' : (res.score>=40 ? 'info' : 'err');
+    fb.className='feedback show '+color;
+    fb.innerHTML = `<b>Độ bao phủ ý: ${res.score}%</b><br>
+      ${res.matched.length?`✅ Đã có ý: ${res.matched.map(m=>esc(m)).join(', ')}.<br>`:''}
+      ${res.missing.length?`📌 Còn thiếu: ${res.missing.map(m=>esc(m)).join(', ')}.<br>`:''}
+      <span class="note">Đây là đánh giá gần đúng dựa trên từ khoá, không phải chấm điểm bằng AI.
+      Bạn có thể diễn đạt theo cách khác miễn là đủ ý. Hãy sửa lại và bấm kiểm tra lần nữa.</span>`;
+    if(res.score>=50){
+      state.openDone[i]=true;
+      state.openAnswers[i]=txt;
+      logActivity('Hoàn thành câu tự luận '+(i+1)+' ('+res.score+'%)');
+      saveState();
+    }
+    recordUnit(0, res.score>=50);
+  }));
+
+  main.querySelector('#openToggleAll').addEventListener('click',()=>{
+    const boxes = list.querySelectorAll('.answerbox[id^="osug-"]');
+    const anyHidden = Array.from(boxes).some(b=>b.classList.contains('hidden'));
+    boxes.forEach(b=>b.classList.toggle('hidden', !anyHidden));
+  });
+}
+
+function checkOpenAnswer(idx, text){
+  const q = OPEN_QUESTIONS[idx];
+  const t = ' ' + norm(text) + ' ';
+  const matched=[], missing=[];
+  q.keys.forEach(g=>{
+    const hit = g.alts.some(a=> t.includes(norm(a)));
+    if(hit) matched.push(g.label); else missing.push(g.label);
+  });
+  const score = q.keys.length ? Math.round(matched.length/q.keys.length*100) : 0;
+  return {score, matched, missing};
+}
+
+/* =========================================================================
+   12. BÀI KIỂM TRA TỔNG HỢP
+   ========================================================================= */
+let lastTestResult=null;
+
+function buildQuestionPool(){
+  const pool=[];
+  VOCAB.forEach(v=>{
+    const others = pick(VOCAB.filter(x=>x.id!==v.id && norm(x.vi)!==norm(v.vi)),3).map(x=>x.vi);
+    if(others.length===3){
+      pool.push({key:'t-mc-en-vi-'+v.id, unit:v.units[0], type:'mc',
+        prompt:`Từ/cụm từ tiếng Anh "<b>${v.en}</b>" (${v.pos}) có nghĩa là gì?`,
+        options: shuffle([v.vi].concat(others)), answer:v.vi,
+        explanation:`<b>${v.en}</b> ${v.ipa} = ${v.vi}. Ví dụ: ${v.ex}`});
+    }
+    const others2 = pick(VOCAB.filter(x=>x.id!==v.id && norm(x.en)!==norm(v.en)),3).map(x=>x.en);
+    if(others2.length===3){
+      pool.push({key:'t-mc-vi-en-'+v.id, unit:v.units[0], type:'mc',
+        prompt:`Từ/cụm từ tiếng Anh nào có nghĩa là "<b>${v.vi}</b>"?`,
+        options: shuffle([v.en].concat(others2)), answer:v.en,
+        explanation:`"${v.vi}" = <b>${v.en}</b> ${v.ipa}`});
+    }
+    pool.push({key:'t-vn2en-'+v.id, unit:v.units[0], type:'text',
+      prompt:`Viết từ/cụm từ tiếng Anh có nghĩa: "<b>${v.vi}</b>" (${v.pos})`,
+      answer:v.en, accept:[v.en], explanation:`Đáp án: <b>${v.en}</b> ${v.ipa} – ${v.vi}`});
+
+    const w = v.en.split(' / ')[0];
+    if(!/[()\/]/.test(w) && w.split(' ').length<=2){
+      const re = new RegExp('\\b'+escRe(w)+'\\b','i');
+      if(re.test(v.ex)){
+        pool.push({key:'t-fill-'+v.id, unit:v.units[0], type:'text',
+          prompt:`Điền từ còn thiếu vào câu: "${esc(v.ex.replace(re,'______'))}"`,
+          answer:w, accept:[w], explanation:`Đáp án: <b>${w}</b> (${v.vi})`});
+      }
+    }
+    const single = v.en.split(' / ')[0];
+    if(/^[a-zA-Z-]+$/.test(single) && single.length>=4){
+      const pat = single[0]+' '+Array(single.length-1).fill('-').join(' ');
+      pool.push({key:'t-wc-'+v.id, unit:v.units[0], type:'text',
+        // ✅ FIX #4: bọc esc() cho pat để tránh ký tự đặc biệt phá HTML
+        prompt:`Hoàn thành từ (${single.length} chữ cái): <b>${esc(pat)}</b><br><i>Nghĩa: ${v.vi}</i>`,
+        answer:single, accept:[single], explanation:`Đáp án: <b>${single}</b> ${v.ipa}`});
+    }
+  });
+  /* Câu hỏi từ bài tập gốc dạng trắc nghiệm */
+  EXERCISES.forEach(e=>{
+    if(e.type==='mc'){
+      e.items.forEach((it,i)=>{
+        pool.push({key:'t-orig-'+e.id+'-'+i, unit:e.unit, type:'mc',
+          prompt:it.q, options:it.o.slice(), answer:it.o[it.a],
+          explanation:it.ex||`Đáp án: ${it.o[it.a]}`});
+      });
+    }
+    if(e.type==='match'){
+      e.pairs.forEach((p,i)=>{
+        const others = pick(VOCAB.filter(v=>v.vi!==p.right),3).map(v=>v.vi);
+        if(others.length===3){
+          pool.push({key:'t-orig-'+e.id+'-m'+i, unit:e.unit, type:'mc',
+            prompt:`Từ/cụm từ "<b>${p.left}</b>" có nghĩa là gì?`,
+            options: shuffle([p.right].concat(others)), answer:p.right,
+            explanation:`"${p.left}" = ${p.right}`});
+        }
+      });
+    }
+    if(e.type==='fill'){
+      e.items.forEach((it,i)=>{
+        pool.push({key:'t-orig-'+e.id+'-f'+i, unit:e.unit, type:'text',
+          prompt:it.q, answer:it.a, accept:[it.a],
+          explanation: it.ex || `Đáp án: ${it.a}`});
+      });
+    }
+    if(e.type==='complete'){
+      e.items.forEach((it,i)=>{
+        pool.push({key:'t-orig-'+e.id+'-c'+i, unit:e.unit, type:'text',
+          prompt:`${it.hint}<br><span class="note" style="font-family:monospace">${it.pattern}</span>`,
+          answer:it.answer, accept:[it.answer], explanation:`Đáp án: <b>${it.answer}</b>`});
+      });
+    }
+    if(e.type==='sort'){
+      e.items.forEach((it,i)=>{
+        pool.push({key:'t-orig-'+e.id+'-s'+i, unit:e.unit, type:'mc',
+          prompt:`Từ "<b>${it.w}</b>" thuộc nhóm nào?`,
+          options: e.cats.slice(), answer:it.c,
+          explanation:`"${it.w}" thuộc nhóm "${it.c}".`});
+      });
+    }
+  });
+  return pool;
+}
+
+function renderTest(main){
+  main.innerHTML = `
+  <h1>🎯 Bài kiểm tra tổng hợp</h1>
+  <div class="card" id="testSetup">
+    <h2>Cấu hình bài kiểm tra</h2>
+    <p class="note">Câu hỏi và các lựa chọn sẽ được xáo trộn ngẫu nhiên mỗi lần làm. Đáp án chỉ hiện sau khi bạn nộp bài.</p>
+    <div class="row">
+      <button class="btn primary" data-count="10">10 câu</button>
+      <button class="btn primary" data-count="20">20 câu</button>
+      <button class="btn primary" data-count="30">30 câu</button>
+      <button class="btn primary" data-count="all">Tất cả câu hỏi</button>
+    </div>
+    <div id="poolInfo" class="note" style="margin-top:10px"></div>
+  </div>
+  <div id="testBody"></div>`;
+
+  const pool = buildQuestionPool();
+  main.querySelector('#poolInfo').textContent = `Tổng số câu hỏi khách quan hiện có: ${pool.length}.`;
+  main.querySelectorAll('[data-count]').forEach(b=>{
+    b.addEventListener('click',()=>startTest(main, b.dataset.count, pool));
+  });
+}
+
+function startTest(main, count, pool){
+  const n = count==='all' ? pool.length : Math.min(Number(count), pool.length);
+  const qs = pick(pool, n);
+  const testBody = main.querySelector('#testBody');
+  main.querySelector('#testSetup').classList.add('hidden');
+
+  testBody.innerHTML = `
+  <div class="card">
+    <div class="row">
+      <h2 style="margin:0">Bài kiểm tra: ${n} câu</h2>
+      <div class="spacer"></div>
+      <button class="btn small ghost" id="testCancel">← Đổi cấu hình</button>
+    </div>
+    <div class="progressbar" style="margin-top:10px"><div id="testProg" style="width:0%"></div></div>
+    <div class="note" id="testProgTxt" style="margin-top:5px">Đã trả lời 0/${n}</div>
+  </div>
+  <div id="testQs"></div>
+  <div class="card">
+    <button class="btn primary" id="submitTest">📤 Nộp bài</button>
+    <span class="note" style="margin-left:10px">Đáp án và giải thích sẽ hiện sau khi nộp.</span>
+  </div>
+  <div id="testResult"></div>`;
+
+  const qWrap = testBody.querySelector('#testQs');
+  qWrap.innerHTML = qs.map((q,i)=>{
+    if(q.type==='mc'){
+      return `<div class="qbox" data-tq="${i}">
+        <div class="qtext">Câu ${i+1}. ${q.prompt} <span class="tag grey">Unit ${q.unit}</span></div>
+        ${q.options.map((o,j)=>`<button class="opt" data-topt="${i}" data-toj="${j}">${String.fromCharCode(65+j)}. ${esc(o)}</button>`).join('')}
+      </div>`;
+    }
+    return `<div class="qbox" data-tq="${i}">
+      <div class="qtext">Câu ${i+1}. ${q.prompt} <span class="tag grey">Unit ${q.unit}</span></div>
+      <input type="text" data-ttext="${i}" placeholder="Nhập câu trả lời...">
+    </div>`;
+  }).join('');
+
+  const answers = new Array(qs.length).fill(null);
+  function updateProgress(){
+    const done = answers.filter(a=>a!==null && a!=='').length;
+    testBody.querySelector('#testProg').style.width = Math.round(done/qs.length*100)+'%';
+    testBody.querySelector('#testProgTxt').textContent = `Đã trả lời ${done}/${qs.length}`;
+  }
+  qWrap.querySelectorAll('[data-topt]').forEach(b=>{
+    b.addEventListener('click',()=>{
+      const i=Number(b.dataset.topt), j=Number(b.dataset.toj);
+      const qbox=b.closest('.qbox');
+      qbox.querySelectorAll('.opt').forEach(x=>x.classList.remove('sel'));
+      b.classList.add('sel');
+      answers[i]=qs[i].options[j];
+      updateProgress();
+    });
+  });
+  qWrap.querySelectorAll('[data-ttext]').forEach(inp=>{
+    inp.addEventListener('input',()=>{
+      answers[Number(inp.dataset.ttext)] = inp.value;
+      updateProgress();
+    });
+  });
+
+  testBody.querySelector('#testCancel').addEventListener('click',()=>showView('test'));
+
+  testBody.querySelector('#submitTest').addEventListener('click',()=>{
+    if(!confirm('Bạn có chắc muốn nộp bài?')) return;
+    let correct=0;
+    const unitPerf={};
+    const details=[];
+    qs.forEach((q,i)=>{
+      const ua = answers[i];
+      let good=false;
+      if(q.type==='mc') good = ua===q.answer;
+      // ✅ FIX #1d: dùng enMatch cho text – hỗ trợ "supply / supplies", "noun, verb"...
+      else good = ua!=null && q.accept.some(a=>enMatch(ua, a));
+      if(good) correct++;
+      if(!unitPerf[q.unit]) unitPerf[q.unit]={c:0,t:0};
+      unitPerf[q.unit].t++;
+      if(good) unitPerf[q.unit].c++;
+      recordUnit(q.unit, good);
+      if(!good){
+        addMistake({key:q.key, unit:q.unit, type:q.type==='mc'?'mc':'text',
+          prompt:q.prompt, user: ua||'(bỏ trống)', correct:q.answer, explanation:q.explanation});
+      }
+      details.push({q, ua, good});
+    });
+
+    /* Hiển thị đáp án đúng/sai */
+    qs.forEach((q,i)=>{
+      const qbox = qWrap.querySelector(`.qbox[data-tq="${i}"]`);
+      if(q.type==='mc'){
+        qbox.querySelectorAll('.opt').forEach(b=>{
+          const j=Number(b.dataset.toj);
+          b.classList.remove('sel');
+          if(q.options[j]===q.answer) b.classList.add('correct');
+          else if(answers[i]===q.options[j]) b.classList.add('wrong');
+        });
+      } else {
+        const inp=qbox.querySelector('input');
+        inp.disabled=true;
+        inp.style.borderColor = details[i].good?'var(--ok)':'var(--err)';
+      }
+      const fb=document.createElement('div');
+      fb.className='feedback show '+(details[i].good?'ok':'err');
+      fb.innerHTML = (details[i].good?'✅ Đúng. ':'❌ Sai. ') +
+        `Đáp án: <b>${esc(q.answer)}</b><br>${q.explanation}`;
+      qbox.appendChild(fb);
+    });
+    testBody.querySelector('#submitTest').disabled=true;
+    testBody.querySelector('#submitTest').textContent='Đã nộp bài';
+
+    const pct = Math.round(correct/qs.length*100);
+    state.testScores.push({ts:Date.now(), pct, correct, total:qs.length});
+    if(state.testScores.length>30) state.testScores.shift();
+    logActivity(`Làm bài kiểm tra ${qs.length} câu – đúng ${correct} (${pct}%)`);
+    saveState();
+
+    let unitRows = Object.keys(unitPerf).sort((a,b)=>Number(a)-Number(b)).map(u=>{
+      const p=unitPerf[u];
+      return `<div class="kv"><span>Unit ${u} – ${esc(unitName(u).replace('Unit '+u+' – ',''))}</span>
+        <span><b>${p.c}/${p.t}</b> (${Math.round(p.c/p.t*100)}%)</span></div>`;
+    }).join('');
+
+    lastTestResult = {qs, answers};
+
+    testBody.querySelector('#testResult').innerHTML = `
+    <div class="card" style="border-color:var(--primary)">
+      <h2>📊 Kết quả</h2>
+      <div class="grid stats">
+        <div class="stat"><div class="num">${correct}/${qs.length}</div><div class="lbl">Số câu đúng</div></div>
+        <div class="stat"><div class="num">${pct}%</div><div class="lbl">Độ chính xác</div></div>
+        <div class="stat"><div class="num">${qs.length-correct}</div><div class="lbl">Số câu sai</div></div>
+      </div>
+      <h3>Kết quả theo từng bài</h3>
+      ${unitRows}
+      <h3>Giải thích chi tiết</h3>
+      <div style="max-height:420px;overflow:auto">
+      ${details.map((d,i)=>{
+        const q=d.q;
+        return `<div class="list-item">
+          <b>Câu ${i+1} (Unit ${q.unit}):</b> ${q.prompt}<br>
+          <span class="${d.good?'':'note'}">Bạn trả lời: <b>${esc(d.ua||'(bỏ trống)')}</b></span><br>
+          <span style="color:var(--ok)">Đáp án: <b>${esc(q.answer)}</b></span><br>
+          <span class="note">${q.explanation}</span>
+        </div>`;
+      }).join('')}
+      </div>
+      <div class="row" style="margin-top:12px">
+        <button class="btn primary" id="retryWrong">🔁 Làm lại chỉ câu sai</button>
+        <button class="btn" id="newTest">🆕 Bài kiểm tra mới</button>
+      </div>
+      <p class="note" style="margin-top:8px">Tiến độ 9 câu hỏi tự luận được theo dõi riêng ở mục “Câu hỏi tự luận”, không tính vào điểm bài kiểm tra này.</p>
+    </div>`;
+
+    testBody.querySelector('#newTest').addEventListener('click',()=>showView('test'));
+    testBody.querySelector('#retryWrong').addEventListener('click',()=>{
+      const wrong = details.filter(d=>!d.good).map(d=>d.q);
+      if(!wrong.length){ toast('Bạn không có câu sai nào! 🎉'); return; }
+      testBody.innerHTML='';
+      main.querySelector('#testSetup').classList.remove('hidden');
+      startTest(main, 'all', wrong);
+    });
+    testBody.querySelector('#testResult').scrollIntoView({behavior:'smooth'});
+  });
+  updateProgress();
+}
+
+/* =========================================================================
+   13. TIẾN ĐỘ & LỖI SAI
+   ========================================================================= */
+function renderProgress(main){
+  const acc = state.totalAnswered ? Math.round(state.totalCorrect/state.totalAnswered*100) : 0;
+  const notMastered = state.mistakes.filter(m=>!m.mastered);
+
+  let unitRows='';
+  UNITS.forEach(u=>{
+    const s = state.unitStats[String(u.id)] || {c:0,t:0};
+    const p = s.t ? Math.round(s.c/s.t*100) : 0;
+    unitRows += `<div class="unitrow">
+      <div class="top"><span>Unit ${u.id} – ${esc(u.name)}</span><span>${s.c}/${s.t} (${p}%)</span></div>
+      <div class="progressbar"><div style="width:${p}%"></div></div>
+    </div>`;
+  });
+
+  const scores = state.testScores.slice().reverse().slice(0,10).map(s=>
+    `<div class="kv"><span>${new Date(s.ts).toLocaleString('vi-VN')}</span><span><b>${s.correct}/${s.total}</b> (${s.pct}%)</span></div>`
+  ).join('') || '<div class="note">Chưa có bài kiểm tra nào.</div>';
+
+  main.innerHTML = `
+  <h1>📈 Tiến độ &amp; Lỗi sai</h1>
+
+  <div class="card">
+    <h2>Tổng quan</h2>
+    <div class="grid stats">
+      <div class="stat"><div class="num">${learnedCount()}/${VOCAB.length}</div><div class="lbl">Từ đã học</div></div>
+      <div class="stat"><div class="num">${acc}%</div><div class="lbl">Độ chính xác chung</div></div>
+      <div class="stat"><div class="num">${notMastered.length}</div><div class="lbl">Lỗi chưa khắc phục</div></div>
+      <div class="stat"><div class="num">${Object.keys(state.openDone).length}/9</div><div class="lbl">Câu tự luận đã lưu</div></div>
+    </div>
+    <h3>Độ chính xác theo bài</h3>
+    ${unitRows}
+  </div>
+
+  <div class="card">
+    <h2>📝 Lịch sử bài kiểm tra (10 lần gần nhất)</h2>
+    ${scores}
+  </div>
+
+  <div class="card">
+    <h2>❌ Ôn lại lỗi sai (${notMastered.length})</h2>
+    <div class="row" style="margin-bottom:10px">
+      <button class="btn small" id="hideMastered">👁️ Hiện cả lỗi đã khắc phục</button>
+      <button class="btn small danger" id="clearMistakes">🗑️ Xoá danh sách lỗi</button>
+    </div>
+    <div id="mistakeList"></div>
+  </div>
+
+  <div class="card">
+    <h2>💾 Sao lưu &amp; phục hồi</h2>
+    <div class="row">
+      <button class="btn primary small" id="exportBtn">⬇️ Export Progress (JSON)</button>
+      <label class="btn small" style="cursor:pointer">⬆️ Import Progress
+        <input type="file" id="importFile" accept="application/json,.json" style="display:none">
+      </label>
+      <button class="btn danger small" id="resetAll">🗑️ Xoá toàn bộ tiến độ</button>
+    </div>
+    <p class="note" style="margin-top:8px">Tệp xuất ra chứa toàn bộ tiến độ học tập và câu trả lời tự luận của bạn.
+    Dữ liệu chỉ được lưu trên thiết bị này, không gửi lên máy chủ.</p>
+  </div>`;
+
+  let showMastered=false;
+  function drawMistakes(){
+    const list = showMastered ? state.mistakes : state.mistakes.filter(m=>!m.mastered);
+    const el = main.querySelector('#mistakeList');
+    if(!list.length){ el.innerHTML='<div class="note">Không có lỗi sai nào. Tuyệt vời! 🎉</div>'; return; }
+    el.innerHTML = list.map((m,idx)=>{
+      const realIdx = state.mistakes.indexOf(m);
+      return `<div class="list-item" data-midx="${realIdx}">
+        <div><span class="tag grey">Unit ${m.unit||'-'}</span> <span class="tag">${esc(m.type||'')}</span>
+        ${m.mastered?'<span class="tag green">Đã khắc phục</span>':''}</div>
+        <div style="margin:6px 0"><b>Câu hỏi:</b> ${m.prompt}</div>
+        <div>Bạn trả lời: <b style="color:var(--err)">${esc(m.user)}</b></div>
+        <div>Đáp án đúng: <b style="color:var(--ok)">${esc(m.correct)}</b></div>
+        <div class="note" style="margin-top:4px">${esc(m.explanation||'')}</div>
+        <div class="row" style="margin-top:8px">
+          <button class="btn small" data-retry="${realIdx}">🔁 Thử lại</button>
+          <button class="btn small ${m.mastered?'':'primary'}" data-master="${realIdx}">${m.mastered?'↩️ Bỏ đánh dấu':'✅ Đã khắc phục'}</button>
+        </div>
+        <div id="retryBox-${realIdx}" style="margin-top:8px"></div>
+      </div>`;
+    }).join('');
+
+    el.querySelectorAll('[data-master]').forEach(b=>b.addEventListener('click',()=>{
+      const i=Number(b.dataset.master);
+      state.mistakes[i].mastered = !state.mistakes[i].mastered;
+      saveState(); drawMistakes();
+      toast(state.mistakes[i].mastered?'Đã đánh dấu khắc phục':'Đã bỏ đánh dấu');
+    }));
+    el.querySelectorAll('[data-retry]').forEach(b=>b.addEventListener('click',()=>{
+      const i=Number(b.dataset.retry);
+      const m=state.mistakes[i];
+      const box = el.querySelector('#retryBox-'+i);
+      box.innerHTML = `<input type="text" id="rt-${i}" placeholder="Nhập lại câu trả lời...">
+        <div class="row" style="margin-top:6px">
+          <button class="btn small primary" id="rtc-${i}">Kiểm tra</button>
+          <button class="btn small" id="rts-${i}">Xem đáp án</button>
+        </div>
+        <div class="feedback" id="rtf-${i}"></div>`;
+      box.querySelector('#rts-'+i).addEventListener('click',()=>{
+        const fb=box.querySelector('#rtf-'+i);
+        fb.className='feedback show info';
+        fb.innerHTML=`Đáp án đúng: <b>${esc(m.correct)}</b><br>${esc(m.explanation||'')}`;
+      });
+      box.querySelector('#rtc-'+i).addEventListener('click',()=>{
+        const val=box.querySelector('#rt-'+i).value;
+        // ✅ FIX #1e: dùng enMatch cho trường hợp đáp án tiếng Anh có biến thể "/"
+        const good = norm(val)===norm(m.correct) || viMatch(val, m.correct) || enMatch(val, m.correct);
+        const fb=box.querySelector('#rtf-'+i);
+        fb.className='feedback show '+(good?'ok':'err');
+        if(good){
+          fb.innerHTML = `✅ Chính xác! Bạn đã khắc phục được lỗi này.`;
+          m.mastered=true; saveState();
+        }else{
+          fb.innerHTML = `❌ Chưa đúng. Đáp án đúng: <b>${esc(m.correct)}</b><br>${esc(m.explanation||'')}`;
+        }
+      });
+    }));
+  }
+  drawMistakes();
+
+  main.querySelector('#hideMastered').addEventListener('click',()=>{ showMastered=!showMastered; drawMistakes(); });
+  main.querySelector('#clearMistakes').addEventListener('click',()=>{
+    if(confirm('Xoá toàn bộ danh sách lỗi sai?')){ state.mistakes=[]; saveState(); drawMistakes(); toast('Đã xoá danh sách lỗi.'); }
+  });
+
+  main.querySelector('#exportBtn').addEventListener('click',()=>{
+    const data = JSON.stringify(state, null, 2);
+    const blob = new Blob([data], {type:'application/json'});
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    const d = new Date();
+    const stamp = d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0');
+    a.href=url; a.download='office-english-progress-'+stamp+'.json';
+    document.body.appendChild(a); a.click(); document.body.removeChild(a);
+    setTimeout(()=>URL.revokeObjectURL(url),1500);
+    toast('Đã xuất tệp tiến độ.');
+  });
+
+  main.querySelector('#importFile').addEventListener('change',e=>{
+    const file=e.target.files[0]; if(!file) return;
+    const reader=new FileReader();
+    reader.onload=()=>{
+      try{
+        const obj=JSON.parse(reader.result);
+        if(!obj || typeof obj!=='object' || !('learned' in obj) || !('mistakes' in obj)){
+          alert('Tệp không hợp lệ: thiếu cấu trúc dữ liệu tiến độ.');
+          return;
+        }
+        if(!confirm('Nhập tiến độ từ tệp sẽ GHI ĐÈ tiến độ hiện tại. Bạn có chắc chắn?')) return;
+        state = Object.assign(defaultState(), obj);
+        if(!Array.isArray(state.mistakes)) state.mistakes=[];
+        if(!Array.isArray(state.activity)) state.activity=[];
+        if(!Array.isArray(state.testScores)) state.testScores=[];
+        saveState(); refreshTopbar();
+        toast('Đã nhập tiến độ thành công.');
+        showView('progress');
+      }catch(err){
+        alert('Không đọc được tệp JSON. Vui lòng kiểm tra lại tệp đã xuất.');
+      }
+    };
+    reader.readAsText(file);
+    e.target.value='';
+  });
+
+  main.querySelector('#resetAll').addEventListener('click',()=>{
+    if(confirm('Bạn có chắc muốn xoá toàn bộ tiến độ? Hành động này không thể hoàn tác.')){
+      state=defaultState(); saveState(); refreshTopbar(); showView('dashboard');
+      toast('Đã xoá toàn bộ tiến độ.');
+    }
+  });
+}
+
+/* =========================================================================
+   14. SỰ KIỆN TOÀN CỤC & KHỞI ĐỘNG
+   ========================================================================= */
+document.addEventListener('click', e=>{
+  const sp = e.target.closest('[data-speak]');
+  if(sp){ speak(sp.dataset.speak); return; }
+
+  const lb = e.target.closest('[data-learn]');
+  if(lb){
+    const id=Number(lb.dataset.learn);
+    markLearned(id, !state.learned[id]);
+    toast(state.learned[id]?'✅ Đã đánh dấu đã học':'↩️ Đã bỏ đánh dấu');
+    return;
+  }
+  const bk = e.target.closest('[data-book]');
+  if(bk){
+    const id=Number(bk.dataset.book);
+    if(state.bookmarked[id]) delete state.bookmarked[id]; else state.bookmarked[id]=true;
+    saveState();
+    bk.classList.toggle('on');
+    bk.textContent = state.bookmarked[id]?'★ Đang ôn':'☆ Lưu từ khó';
+    toast(state.bookmarked[id]?'⭐ Đã lưu vào danh sách từ khó':'Đã bỏ khỏi danh sách từ khó');
+    return;
+  }
+});
+
+$$('.sidebar a').forEach(a=>{
+  a.addEventListener('click', e=>{
+    e.preventDefault();
+    showView(a.dataset.view);
+  });
+});
+$('#menuBtn').addEventListener('click',()=>{
+  if($('#sidebar').classList.contains('open')) closeSidebar(); else openSidebar();
+});
+$('#scrim').addEventListener('click', closeSidebar);
+window.addEventListener('resize',()=>{ if(window.innerWidth>900) closeSidebar(); });
+
+/* Khởi động */
+loadState();
+refreshTopbar();
+showView(state.lastView && VIEWS.indexOf(state.lastView)>=0 ? state.lastView : 'dashboard');
+</script>
+</body>
+</html>
